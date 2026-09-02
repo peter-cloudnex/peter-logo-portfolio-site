@@ -3,6 +3,8 @@ import Link from "next/link";
 import { Container } from "@/components/layout/container";
 import { Section } from "@/components/layout/section";
 import { buttonClasses } from "@/components/button";
+import { Seo } from "@/components/seo";
+import { NewTabHint } from "@/components/text-link";
 import { SITE_URLS } from "@/lib/site-config";
 import { SelectedWork } from "@/components/home/selected-work";
 import { ExperienceTimeline } from "@/components/home/experience-timeline";
@@ -19,6 +21,11 @@ const PROOF_POINTS = [
 export default function Home() {
   return (
     <>
+      <Seo
+        title="Peter Logo — Full-stack engineer"
+        description="Full-stack engineer specializing in backend systems, AI-native applications, and cloud infrastructure."
+        path="/"
+      />
       <Section>
         <Container>
           <div className="grid items-center gap-12 lg:grid-cols-[1.15fr_0.85fr] lg:gap-16">
@@ -57,6 +64,7 @@ export default function Home() {
                   className="font-medium text-foreground-muted no-underline transition-colors duration-150 ease-out hover:text-foreground focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand"
                 >
                   GitHub
+                  <NewTabHint />
                 </a>
                 <span aria-hidden className="text-border-strong">
                   /
@@ -68,6 +76,7 @@ export default function Home() {
                   className="font-medium text-foreground-muted no-underline transition-colors duration-150 ease-out hover:text-foreground focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand"
                 >
                   LinkedIn
+                  <NewTabHint />
                 </a>
                 <span aria-hidden className="text-border-strong">
                   /

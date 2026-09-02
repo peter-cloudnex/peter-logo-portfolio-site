@@ -4,6 +4,7 @@ import { Section } from "@/components/layout/section";
 import { buttonClasses } from "@/components/button";
 import { Seo } from "@/components/seo";
 import { SITE_EMAIL_HREF, SITE_URLS } from "@/lib/site-config";
+import { NewTabHint } from "@/components/text-link";
 import {
   RESUME_AI_ENGINEERING,
   RESUME_CERTIFICATIONS,
@@ -77,6 +78,7 @@ export default function ResumePage() {
               className="font-medium text-foreground-muted no-underline transition-colors duration-150 ease-out hover:text-foreground"
             >
               GitHub
+              <NewTabHint />
             </a>
             <span aria-hidden className="text-border-strong">
               /
@@ -88,6 +90,7 @@ export default function ResumePage() {
               className="font-medium text-foreground-muted no-underline transition-colors duration-150 ease-out hover:text-foreground"
             >
               LinkedIn
+              <NewTabHint />
             </a>
           </nav>
 
@@ -164,6 +167,7 @@ export default function ResumePage() {
                           className="text-meta font-medium text-foreground-muted no-underline transition-colors duration-150 ease-out hover:text-foreground"
                         >
                           {project.href.replace(/^https?:\/\//, "")}
+                          <NewTabHint />
                         </a>
                       ) : null}
                     </div>
@@ -203,8 +207,8 @@ export default function ResumePage() {
           </div>
 
           <div className="mt-12 border-t border-border pt-8">
-            <a href={SITE_URLS.resume} download className={buttonClasses("secondary")}>
-              Download résumé document
+            <a href={SITE_URLS.resumeDocx} download className={buttonClasses("secondary")}>
+              Download Word (.docx)
             </a>
           </div>
         </Container>

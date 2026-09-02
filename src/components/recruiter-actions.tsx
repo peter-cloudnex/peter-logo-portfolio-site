@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { NewTabHint } from "@/components/text-link";
 import { SITE_EMAIL_HREF, SITE_URLS } from "@/lib/site-config";
 
 type RecruiterActionsProps = {
@@ -28,10 +29,12 @@ export function RecruiterActions({ includeResumePage = false, className = "" }: 
       <Separator />
       <a href={SITE_URLS.linkedin} target="_blank" rel="noopener noreferrer" className={linkClass}>
         LinkedIn
+        <NewTabHint />
       </a>
       <Separator />
       <a href={SITE_URLS.github} target="_blank" rel="noopener noreferrer" className={linkClass}>
         GitHub
+        <NewTabHint />
       </a>
       <Separator />
       <a href={SITE_URLS.resume} download className={linkClass}>

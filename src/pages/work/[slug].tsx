@@ -93,6 +93,7 @@ export default function CaseStudyPage({ project, caseStudy, period, previous, ne
         title={`${project.name} — Case study | Peter Logo`}
         description={caseStudy.overview[0]}
         path={`/work/${project.slug}`}
+        ogType="article"
       />
 
       <Section>

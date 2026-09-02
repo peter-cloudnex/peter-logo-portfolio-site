@@ -4,6 +4,10 @@ import type { ReactNode } from "react";
 const CLASSES =
   "group inline-flex items-center gap-1 font-medium text-foreground no-underline underline-offset-4 transition-colors duration-150 ease-out hover:text-brand hover:underline";
 
+export function NewTabHint() {
+  return <span className="sr-only"> (opens in a new tab)</span>;
+}
+
 function Arrow() {
   return (
     <span
@@ -33,6 +37,7 @@ export function TextLink({ href, children }: { href: string; children: ReactNode
       {...(isExternal ? { target: "_blank", rel: "noopener noreferrer" } : {})}
     >
       {children}
+      {isExternal ? <NewTabHint /> : null}
       <Arrow />
     </a>
   );

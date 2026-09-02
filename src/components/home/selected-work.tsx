@@ -2,24 +2,27 @@ import Link from "next/link";
 import { Container } from "@/components/layout/container";
 import { Section } from "@/components/layout/section";
 import { SectionHeading } from "@/components/section-heading";
+import { NewTabHint } from "@/components/text-link";
 import { Tag } from "@/components/tag";
 import { PROJECTS, type Project } from "@/lib/portfolio";
 
 const CARD_SURFACE =
-  "group relative rounded-lg border bg-surface transition-colors duration-150 ease-out hover:bg-surface-muted";
+  "group relative cursor-pointer rounded-lg border bg-surface transition-colors duration-150 ease-out hover:bg-surface-muted";
 
 // Exported so the case-study header (src/components/work/case-study-header.tsx) can reuse the
 // exact same category/link row instead of re-implementing it.
 export function ProjectMeta({ project }: { project: Project }) {
   return (
     <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
-      <p
-        className={`font-mono text-meta uppercase tracking-[0.08em] ${
-          project.featured ? "text-brand" : "text-foreground-subtle"
-        }`}
-      >
-        {project.category}
-      </p>
+      {project.featured ? (
+        <>
+          <p className="font-mono text-meta uppercase tracking-[0.08em] text-brand">Featured</p>
+          <span aria-hidden className="text-border-strong">
+            /
+          </span>
+        </>
+      ) : null}
+      <p className="font-mono text-meta uppercase tracking-[0.08em] text-foreground-subtle">{project.category}</p>
       {project.href ? (
         <>
           <span aria-hidden className="text-border-strong">
@@ -29,9 +32,10 @@ export function ProjectMeta({ project }: { project: Project }) {
             href={project.href}
             target="_blank"
             rel="noopener noreferrer"
-            className="relative z-10 font-medium text-foreground no-underline transition-colors duration-150 ease-out hover:text-brand hover:underline"
+            className="relative z-10 pointer-events-auto font-medium text-foreground no-underline transition-colors duration-150 ease-out hover:text-brand hover:underline"
           >
             View project ↗
+            <NewTabHint />
           </a>
         </>
       ) : null}
@@ -49,11 +53,22 @@ function CaseStudyLink({ project, className = "" }: { project: Project; classNam
   );
 }
 
+function ReadCaseStudyHint() {
+  return (
+    <p aria-hidden className="text-meta font-medium text-foreground">
+      Read case study
+      <span className="ml-1 inline-block transition-transform duration-150 ease-out motion-reduce:transition-none group-hover:translate-x-0.5">
+        →
+      </span>
+    </p>
+  );
+}
+
 function FeaturedCard({ project }: { project: Project }) {
   return (
     <article className={`${CARD_SURFACE} border-brand/30 p-8 hover:border-brand/60 sm:p-10`}>
       <CaseStudyLink project={project} />
-      <div className="relative z-[1] grid gap-8 lg:grid-cols-[1.3fr_1fr] lg:gap-12">
+      <div className="relative z-[1] grid gap-8 pointer-events-none lg:grid-cols-[1.3fr_1fr] lg:gap-12">
         <div className="flex flex-col gap-4">
           <ProjectMeta project={project} />
           <h3 className="text-h2 font-semibold tracking-tight text-foreground transition-colors duration-150 ease-out group-hover:text-brand">
@@ -61,6 +76,7 @@ function FeaturedCard({ project }: { project: Project }) {
           </h3>
           <p className="max-w-prose text-body-lg text-foreground-muted">{project.context}</p>
           <p className="max-w-prose text-body text-foreground">{project.responsibility}</p>
+          <ReadCaseStudyHint />
         </div>
 
         <div className="flex flex-col gap-6 lg:border-l lg:border-border lg:pl-8">
@@ -87,7 +103,7 @@ function StandardCard({ project }: { project: Project }) {
   return (
     <article className={`${CARD_SURFACE} flex flex-col gap-4 border-border p-6 hover:border-border-strong`}>
       <CaseStudyLink project={project} />
-      <div className="relative z-[1] flex flex-col gap-4">
+      <div className="relative z-[1] flex flex-col gap-4 pointer-events-none">
         <ProjectMeta project={project} />
         <h3 className="text-h3 font-semibold tracking-tight text-foreground transition-colors duration-150 ease-out group-hover:text-brand">
           {project.name}
@@ -107,6 +123,7 @@ function StandardCard({ project }: { project: Project }) {
             <Tag key={tech}>{tech}</Tag>
           ))}
         </div>
+        <ReadCaseStudyHint />
       </div>
     </article>
   );
@@ -123,7 +140,9 @@ export function SelectedWork({ showHeading = true }: { showHeading?: boolean }) 
             title="Systems shipped to production"
             description="AI infrastructure, payments, and AI-driven data platforms — built and running in production."
           />
-        ) : null}
+        ) : (
+          <h2 className="sr-only">Case studies</h2>
+        )}
 
         <div className={`flex flex-col gap-6 ${showHeading ? "mt-10" : ""}`}>
           <FeaturedCard project={featured} />
