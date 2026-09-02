@@ -1,6 +1,5 @@
 import { Container } from "@/components/layout/container";
 import { Section } from "@/components/layout/section";
-import { RecruiterActions } from "@/components/recruiter-actions";
 import { Seo } from "@/components/seo";
 import { TextLink } from "@/components/text-link";
 
@@ -49,7 +48,6 @@ export default function AboutPage() {
               <TextLink href="/experience">Experience</TextLink>
               <TextLink href="/resume">Résumé</TextLink>
             </div>
-            <RecruiterActions className="mt-2" />
           </div>
         </Container>
       </Section>

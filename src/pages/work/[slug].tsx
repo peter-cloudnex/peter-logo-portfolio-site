@@ -41,7 +41,46 @@ const SECTIONS: NavSection[] = [
   { id: "challenges", label: "Challenges" },
   { id: "outcome", label: "Outcome" },
   { id: "technologies", label: "Technologies" },
+  { id: "links", label: "Links" },
 ];
+
+function sectionHasContent(
+  id: string,
+  caseStudy: CaseStudy,
+  project: Project,
+  hasDiagram: boolean,
+): boolean {
+  switch (id) {
+    case "overview":
+      return caseStudy.context.length > 0;
+    case "problem":
+      return caseStudy.problem.length > 0;
+    case "role":
+      return caseStudy.role.length > 0;
+    case "constraints":
+      return caseStudy.constraints.items.length > 0 || Boolean(caseStudy.constraints.note);
+    case "architecture":
+      return caseStudy.architecture.intro.length > 0 || hasDiagram;
+    case "decisions":
+      return caseStudy.decisions.length > 0;
+    case "tradeoffs":
+      return caseStudy.tradeoffs.length > 0;
+    case "challenges":
+      return caseStudy.challenges.items.length > 0 || Boolean(caseStudy.challenges.note);
+    case "outcome":
+      return (
+        caseStudy.outcome.metrics.length > 0 ||
+        caseStudy.outcome.bullets.length > 0 ||
+        Boolean(caseStudy.outcome.note)
+      );
+    case "technologies":
+      return project.stack.length > 0;
+    case "links":
+      return caseStudy.links.length > 0;
+    default:
+      return false;
+  }
+}
 
 function BulletList({ items }: { items: string[] }) {
   return (
@@ -85,7 +124,11 @@ export const getStaticProps: GetStaticProps<Props> = ({ params }) => {
 
 export default function CaseStudyPage({ project, caseStudy, period, previous, next }: Props) {
   const Diagram = DIAGRAM_COMPONENTS[project.slug];
-  const sections = caseStudy.links.length > 0 ? [...SECTIONS, { id: "links", label: "Links" }] : SECTIONS;
+  const hasDiagram = Boolean(Diagram);
+  const sections = SECTIONS.filter((section) =>
+    sectionHasContent(section.id, caseStudy, project, hasDiagram),
+  );
+  const show = (id: string) => sections.some((section) => section.id === id);
 
   return (
     <>
@@ -106,84 +149,104 @@ export default function CaseStudyPage({ project, caseStudy, period, previous, ne
             <CaseStudyNav sections={sections} />
 
             <div className="min-w-0">
-              <CaseStudySection id="overview" title="Overview">
-                {caseStudy.context.map((paragraph) => (
-                  <p key={paragraph} className="max-w-prose text-body-lg text-foreground-muted">
-                    {paragraph}
-                  </p>
-                ))}
-              </CaseStudySection>
-
-              <CaseStudySection id="problem" title="Problem">
-                {caseStudy.problem.map((paragraph) => (
-                  <p key={paragraph} className="max-w-prose text-body text-foreground-muted">
-                    {paragraph}
-                  </p>
-                ))}
-              </CaseStudySection>
-
-              <CaseStudySection id="role" title="Role & ownership">
-                {caseStudy.role.map((paragraph) => (
-                  <p key={paragraph} className="max-w-prose text-body text-foreground-muted">
-                    {paragraph}
-                  </p>
-                ))}
-              </CaseStudySection>
-
-              <CaseStudySection id="constraints" title="Constraints">
-                {caseStudy.constraints.items.length > 0 ? <BulletList items={caseStudy.constraints.items} /> : null}
-                {caseStudy.constraints.note ? <ContentPlaceholder note={caseStudy.constraints.note} /> : null}
-              </CaseStudySection>
-
-              <CaseStudySection id="architecture" title="architecture" variant="technical">
-                {caseStudy.architecture.intro.map((paragraph) => (
-                  <p key={paragraph} className="max-w-prose text-body text-foreground-muted">
-                    {paragraph}
-                  </p>
-                ))}
-                {Diagram ? (
-                  <ArchitectureDiagram caption={DIAGRAM_CAPTIONS[project.slug]}>
-                    <Diagram />
-                  </ArchitectureDiagram>
-                ) : null}
-              </CaseStudySection>
-
-              <CaseStudySection id="decisions" title="technical decisions" variant="technical">
-                <div className={caseStudy.decisions.length > 1 ? "grid gap-4 sm:grid-cols-2" : "flex flex-col gap-4"}>
-                  {caseStudy.decisions.map((decision) => (
-                    <TechnicalDecision key={decision.decision} decision={decision} />
+              {show("overview") ? (
+                <CaseStudySection id="overview" title="Overview">
+                  {caseStudy.context.map((paragraph) => (
+                    <p key={paragraph} className="max-w-prose text-body-lg text-foreground-muted">
+                      {paragraph}
+                    </p>
                   ))}
-                </div>
-              </CaseStudySection>
+                </CaseStudySection>
+              ) : null}
 
-              <CaseStudySection id="tradeoffs" title="trade-offs" variant="technical">
-                <div className={caseStudy.tradeoffs.length > 1 ? "grid gap-4 sm:grid-cols-2" : "flex flex-col gap-4"}>
-                  {caseStudy.tradeoffs.map((tradeoff) => (
-                    <TradeoffCallout key={tradeoff.choice} tradeoff={tradeoff} />
+              {show("problem") ? (
+                <CaseStudySection id="problem" title="Problem">
+                  {caseStudy.problem.map((paragraph) => (
+                    <p key={paragraph} className="max-w-prose text-body text-foreground-muted">
+                      {paragraph}
+                    </p>
                   ))}
-                </div>
-              </CaseStudySection>
+                </CaseStudySection>
+              ) : null}
 
-              <CaseStudySection id="challenges" title="challenges" variant="technical">
-                {caseStudy.challenges.items.length > 0 ? <BulletList items={caseStudy.challenges.items} /> : null}
-                {caseStudy.challenges.note ? <ContentPlaceholder note={caseStudy.challenges.note} /> : null}
-              </CaseStudySection>
-
-              <CaseStudySection id="outcome" title="Outcome">
-                <MetricProof metrics={caseStudy.outcome.metrics} />
-                <BulletList items={caseStudy.outcome.bullets} />
-                {caseStudy.outcome.note ? <ContentPlaceholder note={caseStudy.outcome.note} /> : null}
-              </CaseStudySection>
-
-              <CaseStudySection id="technologies" title="Technologies">
-                <div className="flex flex-wrap gap-2">
-                  {project.stack.map((tech) => (
-                    <Tag key={tech}>{tech}</Tag>
+              {show("role") ? (
+                <CaseStudySection id="role" title="Role & ownership">
+                  {caseStudy.role.map((paragraph) => (
+                    <p key={paragraph} className="max-w-prose text-body text-foreground-muted">
+                      {paragraph}
+                    </p>
                   ))}
-                </div>
-              </CaseStudySection>
+                </CaseStudySection>
+              ) : null}
 
-              {caseStudy.links.length > 0 ? (
+              {show("constraints") ? (
+                <CaseStudySection id="constraints" title="Constraints">
+                  {caseStudy.constraints.items.length > 0 ? <BulletList items={caseStudy.constraints.items} /> : null}
+                  {caseStudy.constraints.note ? <ContentPlaceholder note={caseStudy.constraints.note} /> : null}
+                </CaseStudySection>
+              ) : null}
+
+              {show("architecture") ? (
+                <CaseStudySection id="architecture" title="architecture" variant="technical">
+                  {caseStudy.architecture.intro.map((paragraph) => (
+                    <p key={paragraph} className="max-w-prose text-body text-foreground-muted">
+                      {paragraph}
+                    </p>
+                  ))}
+                  {Diagram ? (
+                    <ArchitectureDiagram caption={DIAGRAM_CAPTIONS[project.slug]}>
+                      <Diagram />
+                    </ArchitectureDiagram>
+                  ) : null}
+                </CaseStudySection>
+              ) : null}
+
+              {show("decisions") ? (
+                <CaseStudySection id="decisions" title="technical decisions" variant="technical">
+                  <div className={caseStudy.decisions.length > 1 ? "grid gap-4 sm:grid-cols-2" : "flex flex-col gap-4"}>
+                    {caseStudy.decisions.map((decision) => (
+                      <TechnicalDecision key={decision.decision} decision={decision} />
+                    ))}
+                  </div>
+                </CaseStudySection>
+              ) : null}
+
+              {show("tradeoffs") ? (
+                <CaseStudySection id="tradeoffs" title="trade-offs" variant="technical">
+                  <div className={caseStudy.tradeoffs.length > 1 ? "grid gap-4 sm:grid-cols-2" : "flex flex-col gap-4"}>
+                    {caseStudy.tradeoffs.map((tradeoff) => (
+                      <TradeoffCallout key={tradeoff.choice} tradeoff={tradeoff} />
+                    ))}
+                  </div>
+                </CaseStudySection>
+              ) : null}
+
+              {show("challenges") ? (
+                <CaseStudySection id="challenges" title="challenges" variant="technical">
+                  {caseStudy.challenges.items.length > 0 ? <BulletList items={caseStudy.challenges.items} /> : null}
+                  {caseStudy.challenges.note ? <ContentPlaceholder note={caseStudy.challenges.note} /> : null}
+                </CaseStudySection>
+              ) : null}
+
+              {show("outcome") ? (
+                <CaseStudySection id="outcome" title="Outcome">
+                  <MetricProof metrics={caseStudy.outcome.metrics} />
+                  {caseStudy.outcome.bullets.length > 0 ? <BulletList items={caseStudy.outcome.bullets} /> : null}
+                  {caseStudy.outcome.note ? <ContentPlaceholder note={caseStudy.outcome.note} /> : null}
+                </CaseStudySection>
+              ) : null}
+
+              {show("technologies") ? (
+                <CaseStudySection id="technologies" title="Technologies">
+                  <div className="flex flex-wrap gap-2">
+                    {project.stack.map((tech) => (
+                      <Tag key={tech}>{tech}</Tag>
+                    ))}
+                  </div>
+                </CaseStudySection>
+              ) : null}
+
+              {show("links") ? (
                 <CaseStudySection id="links" title="Links">
                   <div className="flex flex-wrap gap-6">
                     {caseStudy.links.map((link) => (

@@ -245,4 +245,58 @@ export const CASE_STUDIES: Record<string, CaseStudy> = {
     },
     links: [],
   },
+
+  rightward: {
+    slug: "rightward",
+    overview: [
+      "Rightward is an AI-powered app that helps Canadians review recurring bills and find ways to save money.",
+    ],
+    context: [
+      "A consumer fintech product focused on telecom bill analysis, plan comparisons, and savings recommendations — built and iterated from real-world testing and user feedback.",
+    ],
+    problem: [],
+    role: [
+      "Built the product end-to-end with Next.js, TypeScript, Supabase, Tailwind CSS, Claude SDK, and Resend, working solo and balancing accuracy, reliability, privacy, and trust.",
+    ],
+    constraints: { items: [] },
+    architecture: { intro: [] },
+    decisions: [],
+    tradeoffs: [],
+    challenges: { items: [] },
+    outcome: {
+      metrics: [],
+      bullets: [
+        "Workflows for telecom bill analysis, plan comparisons, and savings recommendations.",
+        "Used the Claude SDK to turn complex billing data into clear, actionable recommendations.",
+        "Iterated on features based on user feedback and real-world testing.",
+      ],
+    },
+    links: [{ label: "rightward.ca", href: "https://rightward.ca" }],
+  },
+
+  echofaith: {
+    slug: "echofaith",
+    overview: [
+      "EchoFaith is an AI-native, multi-tenant platform for church communication and workflow automation.",
+    ],
+    context: [
+      "The product is built for scheduled messaging, outreach automation, and member lifecycle management across tenants.",
+    ],
+    problem: [],
+    role: [
+      "Designing the backend for scheduled messaging, outreach automation, and member lifecycle management.",
+    ],
+    constraints: { items: [] },
+    architecture: { intro: [] },
+    decisions: [],
+    tradeoffs: [],
+    challenges: { items: [] },
+    outcome: {
+      metrics: [],
+      bullets: [
+        "Queue-based job processing, timezone-aware scheduling, and activity tracking across tenants.",
+      ],
+    },
+    links: [{ label: "echofaith.io", href: "https://echofaith.io" }],
+  },
 };

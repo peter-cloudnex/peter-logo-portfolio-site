@@ -5,7 +5,7 @@ import { Section } from "@/components/layout/section";
 import { buttonClasses } from "@/components/button";
 import { Seo } from "@/components/seo";
 import { NewTabHint } from "@/components/text-link";
-import { SITE_URLS } from "@/lib/site-config";
+import { SITE_TITLE, SITE_URLS } from "@/lib/site-config";
 import { SelectedWork } from "@/components/home/selected-work";
 import { ExperienceTimeline } from "@/components/home/experience-timeline";
 import { TechnicalExpertise } from "@/components/home/technical-expertise";
@@ -22,8 +22,8 @@ export default function Home() {
   return (
     <>
       <Seo
-        title="Peter Logo — Full-stack engineer"
-        description="Full-stack engineer specializing in backend systems, AI-native applications, and cloud infrastructure."
+        title={`Peter Logo — ${SITE_TITLE}`}
+        description={`${SITE_TITLE} specializing in backend systems, AI-native applications, and cloud infrastructure.`}
         path="/"
       />
       <Section>
@@ -31,13 +31,13 @@ export default function Home() {
           <div className="grid items-center gap-12 lg:grid-cols-[1.15fr_0.85fr] lg:gap-16">
             <div className="flex flex-col gap-6">
               <p className="font-mono text-meta uppercase tracking-[0.08em] text-foreground-subtle">
-                Software Engineer
+                {SITE_TITLE}
               </p>
 
               <div>
                 <h1 className="text-display font-semibold tracking-tight text-foreground">Peter Logo</h1>
                 <p className="mt-3 text-h3 font-medium text-foreground-muted">
-                  Full-stack engineer specializing in backend systems, AI-native applications, and cloud
+                  {SITE_TITLE} specializing in backend systems, AI-native applications, and cloud
                   infrastructure.
                 </p>
               </div>
@@ -107,7 +107,7 @@ export default function Home() {
                     Peter Logo
                   </span>
                   <span className="font-mono text-mono uppercase tracking-[0.08em] text-foreground-subtle">
-                    Full-Stack Engineer
+                    {SITE_TITLE}
                   </span>
                 </div>
               </div>
@@ -141,7 +141,7 @@ export default function Home() {
         </Container>
       </Section>
 
-      <SelectedWork />
+      <SelectedWork variant="teaser" />
       <ExperienceTimeline />
       <TechnicalExpertise />
       <EngineeringApproach />

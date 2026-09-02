@@ -3,8 +3,7 @@ import { Container } from "@/components/layout/container";
 import { Section } from "@/components/layout/section";
 import { SectionHeading } from "@/components/section-heading";
 import { buttonClasses } from "@/components/button";
-import { RecruiterActions } from "@/components/recruiter-actions";
-import { SITE_EMAIL_HREF } from "@/lib/site-config";
+import { SITE_EMAIL_HREF, SITE_TITLE } from "@/lib/site-config";
 
 export function FinalCta() {
   return (
@@ -13,7 +12,7 @@ export function FinalCta() {
         <div className="flex max-w-2xl flex-col gap-6">
           <SectionHeading
             eyebrow="Contact"
-            title="Looking for a full-stack engineer?"
+            title={`Looking for a ${SITE_TITLE}?`}
             description="I am open to software engineering opportunities focused on backend systems, AI-native applications, and cloud infrastructure. If that matches a role you are hiring for, get in touch."
           />
 
@@ -25,8 +24,6 @@ export function FinalCta() {
               View résumé
             </Link>
           </div>
-
-          <RecruiterActions />
         </div>
       </Container>
     </Section>

@@ -57,6 +57,33 @@ export const PROJECTS: Project[] = [
     ],
     stack: ["Neo4j", "Cypher", "Node.js", "TypeScript", "AWS"],
   },
+  {
+    slug: "rightward",
+    name: "Rightward",
+    category: "Consumer Fintech",
+    href: "https://rightward.ca",
+    context: "An AI-powered app that helps Canadians review recurring bills and find ways to save money.",
+    responsibility:
+      "Built the product end-to-end with Next.js, TypeScript, Supabase, Tailwind CSS, Claude SDK, and Resend.",
+    proof: [
+      "Workflows for telecom bill analysis, plan comparisons, and savings recommendations.",
+      "Used the Claude SDK to turn complex billing data into clear, actionable recommendations.",
+      "Balanced accuracy, reliability, privacy, and trust while building solo.",
+    ],
+    stack: ["Next.js", "TypeScript", "Supabase", "Tailwind CSS", "Claude SDK", "Resend"],
+  },
+  {
+    slug: "echofaith",
+    name: "EchoFaith",
+    category: "AI-Native Product",
+    href: "https://echofaith.io",
+    context: "An AI-native, multi-tenant platform for church communication and workflow automation.",
+    responsibility: "Designing backend for scheduled messaging, outreach automation, and member lifecycle management.",
+    proof: [
+      "Queue-based job processing, timezone-aware scheduling, and activity tracking across tenants.",
+    ],
+    stack: [],
+  },
 ];
 
 export type ExperienceEntry = {

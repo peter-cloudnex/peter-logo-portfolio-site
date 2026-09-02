@@ -23,4 +23,5 @@ export const SITE_URLS = {
   origin: SITE_ORIGIN,
 } as const;
 
+export const SITE_TITLE = "Full-stack engineer" as const;
 export const SITE_EMAIL_HREF = `mailto:${SITE_URLS.email}` as const;

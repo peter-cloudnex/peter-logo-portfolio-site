@@ -23,11 +23,13 @@ export function CaseStudyHeader({
         ) : null}
       </div>
       <p className="max-w-prose text-body-lg text-foreground-muted">{tagline}</p>
-      <div className="flex flex-wrap gap-2">
-        {project.stack.map((tech) => (
-          <Tag key={tech}>{tech}</Tag>
-        ))}
-      </div>
+      {project.stack.length > 0 ? (
+        <div className="flex flex-wrap gap-2">
+          {project.stack.map((tech) => (
+            <Tag key={tech}>{tech}</Tag>
+          ))}
+        </div>
+      ) : null}
     </header>
   );
 }

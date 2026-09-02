@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Container } from "@/components/layout/container";
 import { RecruiterActions } from "@/components/recruiter-actions";
+import { SITE_TITLE } from "@/lib/site-config";
 
 const FOOTER_LINKS = [
   { href: "/work", label: "Work" },
@@ -21,7 +22,7 @@ export function SiteFooter() {
               Peter <span className="text-brand">Logo</span>
             </p>
             <p className="mt-1 max-w-sm text-meta text-foreground-muted">
-              Full-stack engineer — backend systems, AI-native applications, and cloud infrastructure.
+              {SITE_TITLE} — backend systems, AI-native applications, and cloud infrastructure.
             </p>
           </div>
 

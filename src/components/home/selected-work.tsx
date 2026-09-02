@@ -2,7 +2,7 @@ import Link from "next/link";
 import { Container } from "@/components/layout/container";
 import { Section } from "@/components/layout/section";
 import { SectionHeading } from "@/components/section-heading";
-import { NewTabHint } from "@/components/text-link";
+import { NewTabHint, TextLink } from "@/components/text-link";
 import { Tag } from "@/components/tag";
 import { PROJECTS, type Project } from "@/lib/portfolio";
 
@@ -80,19 +80,23 @@ function FeaturedCard({ project }: { project: Project }) {
         </div>
 
         <div className="flex flex-col gap-6 lg:border-l lg:border-border lg:pl-8">
-          <ul className="flex flex-col gap-2">
-            {project.proof.map((point) => (
-              <li key={point} className="flex gap-2 text-meta text-foreground-muted">
-                <span aria-hidden className="mt-[7px] h-1 w-1 shrink-0 rounded-full bg-foreground-subtle" />
-                {point}
-              </li>
-            ))}
-          </ul>
-          <div className="flex flex-wrap gap-2">
-            {project.stack.map((tech) => (
-              <Tag key={tech}>{tech}</Tag>
-            ))}
-          </div>
+          {project.proof.length > 0 ? (
+            <ul className="flex flex-col gap-2">
+              {project.proof.map((point) => (
+                <li key={point} className="flex gap-2 text-meta text-foreground-muted">
+                  <span aria-hidden className="mt-[7px] h-1 w-1 shrink-0 rounded-full bg-foreground-subtle" />
+                  {point}
+                </li>
+              ))}
+            </ul>
+          ) : null}
+          {project.stack.length > 0 ? (
+            <div className="flex flex-wrap gap-2">
+              {project.stack.map((tech) => (
+                <Tag key={tech}>{tech}</Tag>
+              ))}
+            </div>
+          ) : null}
         </div>
       </div>
     </article>
@@ -110,27 +114,38 @@ function StandardCard({ project }: { project: Project }) {
         </h3>
         <p className="text-body text-foreground-muted">{project.context}</p>
         <p className="text-body text-foreground">{project.responsibility}</p>
-        <ul className="flex flex-col gap-2">
-          {project.proof.map((point) => (
-            <li key={point} className="flex gap-2 text-meta text-foreground-muted">
-              <span aria-hidden className="mt-[7px] h-1 w-1 shrink-0 rounded-full bg-foreground-subtle" />
-              {point}
-            </li>
-          ))}
-        </ul>
-        <div className="mt-auto flex flex-wrap gap-2 pt-2">
-          {project.stack.map((tech) => (
-            <Tag key={tech}>{tech}</Tag>
-          ))}
-        </div>
+        {project.proof.length > 0 ? (
+          <ul className="flex flex-col gap-2">
+            {project.proof.map((point) => (
+              <li key={point} className="flex gap-2 text-meta text-foreground-muted">
+                <span aria-hidden className="mt-[7px] h-1 w-1 shrink-0 rounded-full bg-foreground-subtle" />
+                {point}
+              </li>
+            ))}
+          </ul>
+        ) : null}
+        {project.stack.length > 0 ? (
+          <div className="mt-auto flex flex-wrap gap-2 pt-2">
+            {project.stack.map((tech) => (
+              <Tag key={tech}>{tech}</Tag>
+            ))}
+          </div>
+        ) : null}
         <ReadCaseStudyHint />
       </div>
     </article>
   );
 }
 
-export function SelectedWork({ showHeading = true }: { showHeading?: boolean }) {
+export function SelectedWork({
+  showHeading = true,
+  variant = "index",
+}: {
+  showHeading?: boolean;
+  variant?: "teaser" | "index";
+}) {
   const [featured, ...rest] = PROJECTS;
+  const restToShow = variant === "teaser" ? rest.slice(0, 2) : rest;
   return (
     <Section className={showHeading ? "border-t border-border" : undefined}>
       <Container>
@@ -147,11 +162,17 @@ export function SelectedWork({ showHeading = true }: { showHeading?: boolean }) 
         <div className={`flex flex-col gap-6 ${showHeading ? "mt-10" : ""}`}>
           <FeaturedCard project={featured} />
           <div className="grid gap-6 sm:grid-cols-2">
-            {rest.map((project) => (
+            {restToShow.map((project) => (
               <StandardCard key={project.slug} project={project} />
             ))}
           </div>
         </div>
+
+        {variant === "teaser" ? (
+          <div className="mt-8">
+            <TextLink href="/work">All case studies</TextLink>
+          </div>
+        ) : null}
       </Container>
     </Section>
   );

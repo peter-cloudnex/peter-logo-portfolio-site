@@ -4,6 +4,8 @@ import { SectionHeading } from "@/components/section-heading";
 import { TextLink } from "@/components/text-link";
 import { EXPERIENCE } from "@/lib/portfolio";
 
+const HOME_PREVIEW_COUNT = 3;
+
 export function ExperienceTimeline() {
   return (
     <Section>
@@ -15,7 +17,7 @@ export function ExperienceTimeline() {
         />
 
         <ol className="mt-10 flex flex-col divide-y divide-border border-t border-border">
-          {EXPERIENCE.map((entry) => (
+          {EXPERIENCE.slice(0, HOME_PREVIEW_COUNT).map((entry) => (
             <li key={entry.company} className="grid gap-2 py-6 sm:grid-cols-[minmax(0,220px)_1fr] sm:gap-8">
               <div>
                 <p className="font-semibold text-foreground">{entry.company}</p>

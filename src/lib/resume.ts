@@ -1,9 +1,11 @@
 // Structured résumé content mirrored from public/Peter-Logo-Software-Engineer-Resume.docx.
 // Keep factual fields aligned with that document; do not invent roles, dates, or metrics.
 
+import { SITE_TITLE } from "@/lib/site-config";
+
 export const RESUME_PROFILE = {
   name: "Peter Logo",
-  title: "FullStack Engineer",
+  title: SITE_TITLE,
   location: "Ottawa, Ontario, Canada",
   summary:
     "FullStack Engineer with 5+ years building web apps, APIs, and cloud systems with TypeScript, JavaScript, React, Node.js, AWS, Docker, and Kubernetes. Also design and ship AI features, from LLM integrations to agentic workflows, and enjoy taking AI-native products from idea to production. Worked across AI, payments, authentication, and data pipelines in Agile teams alongside engineering, product, data, and business folks, building software that solves real problems. Builder of ModelRail (a production AI gateway for developers), Rightward.ca (an AI-powered consumer fintech app), and EchoFaith.io (an AI-native church communication platform).",

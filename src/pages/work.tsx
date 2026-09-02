@@ -8,19 +8,20 @@ export default function WorkPage() {
     <>
       <Seo
         title="Work — Peter Logo"
-        description="AI infrastructure, payments, and AI-driven data platforms — case studies for ModelRail, KrownPay, and Resonance Holdings."
+        description="AI infrastructure, payments, data platforms, and AI-native products — ModelRail, KrownPay, Resonance Holdings, Rightward, and EchoFaith."
         path="/work"
       />
       <Section spacing="compact">
         <Container>
           <h1 className="text-h1 font-semibold tracking-tight text-foreground">Work</h1>
           <p className="mt-4 max-w-prose text-body-lg text-foreground-muted">
-            Production systems across AI infrastructure, payments, and data platforms. Each project links to a full
-            case study — context, architecture, and trade-offs, not just the summary.
+            Production systems across AI infrastructure, payments, data platforms, and AI-native products. Each
+            project links to a write-up — long-form case study where the detail is public, a shorter verified
+            summary where it is not.
           </p>
         </Container>
       </Section>
-      <SelectedWork showHeading={false} />
+      <SelectedWork showHeading={false} variant="index" />
     </>
   );
 }
