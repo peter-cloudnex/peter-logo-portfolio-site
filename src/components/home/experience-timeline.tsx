@@ -1,6 +1,7 @@
 import { Container } from "@/components/layout/container";
 import { Section } from "@/components/layout/section";
 import { SectionHeading } from "@/components/section-heading";
+import { TextLink } from "@/components/text-link";
 import { EXPERIENCE } from "@/lib/portfolio";
 
 export function ExperienceTimeline() {
@@ -34,6 +35,10 @@ export function ExperienceTimeline() {
             </li>
           ))}
         </ol>
+
+        <div className="mt-8">
+          <TextLink href="/experience">Full experience page</TextLink>
+        </div>
       </Container>
     </Section>
   );

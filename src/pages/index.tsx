@@ -8,6 +8,7 @@ import { SelectedWork } from "@/components/home/selected-work";
 import { ExperienceTimeline } from "@/components/home/experience-timeline";
 import { TechnicalExpertise } from "@/components/home/technical-expertise";
 import { EngineeringApproach } from "@/components/home/engineering-approach";
+import { FinalCta } from "@/components/home/final-cta";
 
 const PROOF_POINTS = [
   { value: "5+", label: "years of professional software engineering experience" },
@@ -53,7 +54,7 @@ export default function Home() {
                   href={SITE_URLS.github}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="font-medium text-foreground-muted no-underline hover:text-foreground"
+                  className="font-medium text-foreground-muted no-underline hover:text-foreground focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand"
                 >
                   GitHub
                 </a>
@@ -64,9 +65,18 @@ export default function Home() {
                   href={SITE_URLS.linkedin}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="font-medium text-foreground-muted no-underline hover:text-foreground"
+                  className="font-medium text-foreground-muted no-underline hover:text-foreground focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand"
                 >
                   LinkedIn
+                </a>
+                <span aria-hidden className="text-border-strong">
+                  /
+                </span>
+                <a
+                  href={`mailto:${SITE_URLS.email}`}
+                  className="font-medium text-foreground-muted no-underline hover:text-foreground focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand"
+                >
+                  Email
                 </a>
               </div>
             </div>
@@ -126,6 +136,7 @@ export default function Home() {
       <ExperienceTimeline />
       <TechnicalExpertise />
       <EngineeringApproach />
+      <FinalCta />
     </>
   );
 }

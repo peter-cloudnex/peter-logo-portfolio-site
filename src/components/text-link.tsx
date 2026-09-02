@@ -22,8 +22,13 @@ export function TextLink({ href, children }: { href: string; children: ReactNode
       </Link>
     );
   }
+  const isExternal = href.startsWith("http://") || href.startsWith("https://");
   return (
-    <a href={href} className={CLASSES}>
+    <a
+      href={href}
+      className={CLASSES}
+      {...(isExternal ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+    >
       {children}
       <Arrow />
     </a>
