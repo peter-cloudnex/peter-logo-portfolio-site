@@ -1,70 +1,47 @@
-// Thin Plausible wrappers — safe no-ops when the script is absent (dev, blockers, offline).
-// Do not preventDefault or replace navigation; tracking only observes clicks.
+import { init, track } from "@plausible-analytics/tracker";
 
-export type AnalyticsLocation =
-  | "hero"
-  | "footer"
-  | "contact"
-  | "resume"
-  | "final_cta"
-  | "header";
+const DOMAIN = process.env.NEXT_PUBLIC_PLAUSIBLE_DOMAIN?.trim() ?? "";
+const TRACK_LOCALHOST = process.env.NEXT_PUBLIC_PLAUSIBLE_TRACK_LOCALHOST === "true";
 
-type EventProps = {
-  location?: AnalyticsLocation | string;
-  page?: string;
-  format?: "pdf" | "docx";
-  source?: string;
-};
+let initialized = false;
 
-declare global {
-  interface Window {
-    plausible?: (event: string, options?: { props?: Record<string, string> }) => void;
-  }
+function isEnabled() {
+  if (!DOMAIN) return false;
+  if (process.env.NODE_ENV !== "production" && !TRACK_LOCALHOST) return false;
+  return true;
 }
 
-function cleanProps(props?: EventProps): Record<string, string> | undefined {
-  if (!props) return undefined;
-  const out: Record<string, string> = {};
-  for (const [key, value] of Object.entries(props)) {
-    if (typeof value === "string" && value.length > 0) out[key] = value;
-  }
-  return Object.keys(out).length > 0 ? out : undefined;
-}
-
-/** Fire a custom event. Never throws; never blocks the caller. */
-export function trackEvent(name: string, props?: EventProps) {
+function initAnalytics() {
+  if (initialized || typeof window === "undefined" || !isEnabled()) return;
+  initialized = true;
   try {
-    if (typeof window === "undefined") return;
-    const plausible = window.plausible;
-    if (typeof plausible !== "function") return;
-    const cleaned = cleanProps(props);
-    if (cleaned) plausible(name, { props: cleaned });
-    else plausible(name);
+    init({
+      domain: DOMAIN,
+      autoCapturePageviews: true,
+      outboundLinks: true,
+      fileDownloads: true,
+      captureOnLocalhost: TRACK_LOCALHOST,
+    });
   } catch {
-    // Analytics must never interfere with recruiter actions.
+    // Init errors (missing APIs, a second call) must never break the site.
   }
 }
 
-export function trackResumeDownload(props: {
-  location: AnalyticsLocation | string;
-  format?: "pdf" | "docx";
-  page?: string;
-}) {
-  trackEvent("resume_download", props);
+function trackCustomEvent(name: string) {
+  try {
+    if (typeof window === "undefined" || !initialized) return;
+    track(name, {});
+  } catch {
+    // Tracking is observational only — never block recruiter actions.
+  }
 }
 
-export function trackGitHubClick(props: { location: AnalyticsLocation | string; page?: string }) {
-  trackEvent("github_click", props);
-}
-
-export function trackLinkedInClick(props: { location: AnalyticsLocation | string; page?: string }) {
-  trackEvent("linkedin_click", props);
-}
-
-export function trackEmailClick(props: { location: AnalyticsLocation | string; page?: string }) {
-  trackEvent("email_click", props);
-}
-
-export function trackSelectedWorkClick(props?: { page?: string }) {
-  trackEvent("selected_work_click", { location: "hero", ...props });
-}
+export const analytics = {
+  init: initAnalytics,
+  trackSelectedWork() {
+    trackCustomEvent("Selected Work");
+  },
+  trackEmailClick() {
+    trackCustomEvent("Email Click");
+  },
+};

@@ -5,13 +5,7 @@ import { Section } from "@/components/layout/section";
 import { buttonClasses } from "@/components/button";
 import { Seo } from "@/components/seo";
 import { NewTabHint } from "@/components/text-link";
-import {
-  trackEmailClick,
-  trackGitHubClick,
-  trackLinkedInClick,
-  trackResumeDownload,
-  trackSelectedWorkClick,
-} from "@/lib/analytics";
+import { analytics } from "@/lib/analytics";
 import { SITE_JOB_TITLE, SITE_TITLE, SITE_URLS } from "@/lib/site-config";
 import { SelectedWork } from "@/components/home/selected-work";
 import { ExperienceTimeline } from "@/components/home/experience-timeline";
@@ -59,7 +53,7 @@ export default function Home() {
                 <Link
                   href="/work"
                   className={buttonClasses("primary")}
-                  onClick={() => trackSelectedWorkClick({ page: "/" })}
+                  onClick={() => analytics.trackSelectedWork()}
                 >
                   View selected work
                 </Link>
@@ -67,7 +61,6 @@ export default function Home() {
                   href={SITE_URLS.resume}
                   download
                   className={buttonClasses("secondary")}
-                  onClick={() => trackResumeDownload({ location: "hero", format: "pdf", page: "/" })}
                 >
                   Download résumé
                 </a>
@@ -79,7 +72,6 @@ export default function Home() {
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex min-h-11 items-center font-medium text-foreground-muted no-underline transition-colors duration-150 ease-out hover:text-foreground focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand"
-                  onClick={() => trackGitHubClick({ location: "hero", page: "/" })}
                 >
                   GitHub
                   <NewTabHint />
@@ -92,7 +84,6 @@ export default function Home() {
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex min-h-11 items-center font-medium text-foreground-muted no-underline transition-colors duration-150 ease-out hover:text-foreground focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand"
-                  onClick={() => trackLinkedInClick({ location: "hero", page: "/" })}
                 >
                   LinkedIn
                   <NewTabHint />
@@ -103,7 +94,7 @@ export default function Home() {
                 <a
                   href={`mailto:${SITE_URLS.email}`}
                   className="inline-flex min-h-11 items-center font-medium text-foreground-muted no-underline transition-colors duration-150 ease-out hover:text-foreground focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand"
-                  onClick={() => trackEmailClick({ location: "hero", page: "/" })}
+                  onClick={() => analytics.trackEmailClick()}
                 >
                   Email
                 </a>

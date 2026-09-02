@@ -1,6 +1,11 @@
 import { createContext, useContext, useEffect, useLayoutEffect, useState } from "react";
 import type { ReactNode } from "react";
-import { THEME_STORAGE_KEY, type ThemePreference, type ResolvedTheme } from "@/lib/theme";
+import {
+  DEFAULT_THEME_PREFERENCE,
+  THEME_STORAGE_KEY,
+  type ThemePreference,
+  type ResolvedTheme,
+} from "@/lib/theme";
 
 function resolveTheme(preference: ThemePreference): ResolvedTheme {
   if (preference !== "system") return preference;
@@ -14,14 +19,14 @@ const ThemeContext = createContext<{
 } | null>(null);
 
 export function ThemeProvider({ children }: { children: ReactNode }) {
-  const [preference, setPreferenceState] = useState<ThemePreference>("system");
+  const [preference, setPreferenceState] = useState<ThemePreference>(DEFAULT_THEME_PREFERENCE);
   const [resolvedTheme, setResolvedTheme] = useState<ResolvedTheme>("light");
 
   // Runs before paint so the toggle's own active state never flashes,
   // reading the attributes the pre-hydration script in _document.tsx already set.
   useLayoutEffect(() => {
     const attr = document.documentElement.getAttribute("data-theme-preference") as ThemePreference | null;
-    const initial = attr ?? "system";
+    const initial = attr ?? DEFAULT_THEME_PREFERENCE;
     // One-time sync from the DOM attribute the pre-hydration script in _document.tsx
     // already set — can't be read during SSR, and this is what avoids a hydration mismatch.
     // eslint-disable-next-line react-hooks/set-state-in-effect

@@ -3,7 +3,7 @@ import { Container } from "@/components/layout/container";
 import { Section } from "@/components/layout/section";
 import { SectionHeading } from "@/components/section-heading";
 import { buttonClasses } from "@/components/button";
-import { trackEmailClick } from "@/lib/analytics";
+import { analytics } from "@/lib/analytics";
 import { SITE_EMAIL_HREF, SITE_TITLE } from "@/lib/site-config";
 
 export function FinalCta() {
@@ -21,7 +21,7 @@ export function FinalCta() {
             <a
               href={SITE_EMAIL_HREF}
               className={buttonClasses("primary")}
-              onClick={() => trackEmailClick({ location: "final_cta", page: "/" })}
+              onClick={() => analytics.trackEmailClick()}
             >
               Email me
             </a>

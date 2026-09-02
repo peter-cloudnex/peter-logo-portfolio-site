@@ -1,20 +1,11 @@
 import Link from "next/link";
-import { useRouter } from "next/router";
 import { NewTabHint } from "@/components/text-link";
-import {
-  trackEmailClick,
-  trackGitHubClick,
-  trackLinkedInClick,
-  trackResumeDownload,
-  type AnalyticsLocation,
-} from "@/lib/analytics";
+import { analytics } from "@/lib/analytics";
 import { SITE_EMAIL_HREF, SITE_URLS } from "@/lib/site-config";
 
 type RecruiterActionsProps = {
   /** When true, include the internal /resume page alongside the download. */
   includeResumePage?: boolean;
-  /** Analytics location prop — where this action cluster sits on the page. */
-  location?: AnalyticsLocation;
   className?: string;
 };
 
@@ -30,51 +21,24 @@ function Separator() {
 }
 
 // Compact text actions for recruiters — email, profiles, résumé — without stacking primary buttons.
-export function RecruiterActions({
-  includeResumePage = false,
-  location = "footer",
-  className = "",
-}: RecruiterActionsProps) {
-  const { pathname } = useRouter();
-
+export function RecruiterActions({ includeResumePage = false, className = "" }: RecruiterActionsProps) {
   return (
     <nav aria-label="Recruiter actions" className={`flex flex-wrap items-center gap-x-3 gap-y-2 text-meta ${className}`}>
-      <a
-        href={SITE_EMAIL_HREF}
-        className={linkClass}
-        onClick={() => trackEmailClick({ location, page: pathname })}
-      >
+      <a href={SITE_EMAIL_HREF} className={linkClass} onClick={() => analytics.trackEmailClick()}>
         Email
       </a>
       <Separator />
-      <a
-        href={SITE_URLS.linkedin}
-        target="_blank"
-        rel="noopener noreferrer"
-        className={linkClass}
-        onClick={() => trackLinkedInClick({ location, page: pathname })}
-      >
+      <a href={SITE_URLS.linkedin} target="_blank" rel="noopener noreferrer" className={linkClass}>
         LinkedIn
         <NewTabHint />
       </a>
       <Separator />
-      <a
-        href={SITE_URLS.github}
-        target="_blank"
-        rel="noopener noreferrer"
-        className={linkClass}
-        onClick={() => trackGitHubClick({ location, page: pathname })}
-      >
+      <a href={SITE_URLS.github} target="_blank" rel="noopener noreferrer" className={linkClass}>
         GitHub
         <NewTabHint />
       </a>
       <Separator />
-      <a
-        href={SITE_URLS.resume}
-        download
-        className={linkClass}
-        onClick={() => trackResumeDownload({ location, format: "pdf", page: pathname })}
-      >
+      <a href={SITE_URLS.resume} download className={linkClass}>
         Download résumé
       </a>
       {includeResumePage ? (

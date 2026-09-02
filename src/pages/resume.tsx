@@ -3,12 +3,7 @@ import { Container } from "@/components/layout/container";
 import { Section } from "@/components/layout/section";
 import { buttonClasses } from "@/components/button";
 import { Seo } from "@/components/seo";
-import {
-  trackEmailClick,
-  trackGitHubClick,
-  trackLinkedInClick,
-  trackResumeDownload,
-} from "@/lib/analytics";
+import { analytics } from "@/lib/analytics";
 import { SITE_EMAIL_HREF, SITE_JOB_TITLE, SITE_URLS } from "@/lib/site-config";
 import { NewTabHint } from "@/components/text-link";
 import {
@@ -63,7 +58,6 @@ export default function ResumePage() {
               href={SITE_URLS.resume}
               download
               className={buttonClasses("primary", "shrink-0 self-start print:hidden")}
-              onClick={() => trackResumeDownload({ location: "resume", format: "pdf", page: "/resume" })}
             >
               Download résumé
             </a>
@@ -76,7 +70,7 @@ export default function ResumePage() {
             <a
               href={SITE_EMAIL_HREF}
               className="inline-flex min-h-11 items-center font-medium text-foreground-muted no-underline transition-colors duration-150 ease-out hover:text-foreground"
-              onClick={() => trackEmailClick({ location: "resume", page: "/resume" })}
+              onClick={() => analytics.trackEmailClick()}
             >
               {SITE_URLS.email}
             </a>
@@ -88,7 +82,6 @@ export default function ResumePage() {
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex min-h-11 items-center font-medium text-foreground-muted no-underline transition-colors duration-150 ease-out hover:text-foreground"
-              onClick={() => trackGitHubClick({ location: "resume", page: "/resume" })}
             >
               GitHub
               <NewTabHint />
@@ -101,7 +94,6 @@ export default function ResumePage() {
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex min-h-11 items-center font-medium text-foreground-muted no-underline transition-colors duration-150 ease-out hover:text-foreground"
-              onClick={() => trackLinkedInClick({ location: "resume", page: "/resume" })}
             >
               LinkedIn
               <NewTabHint />
@@ -225,7 +217,6 @@ export default function ResumePage() {
               href={SITE_URLS.resumeDocx}
               download
               className={buttonClasses("secondary")}
-              onClick={() => trackResumeDownload({ location: "resume", format: "docx", page: "/resume" })}
             >
               Download Word (.docx)
             </a>
