@@ -1,16 +1,122 @@
+import Image from "next/image";
+import Link from "next/link";
 import { Container } from "@/components/layout/container";
 import { Section } from "@/components/layout/section";
+import { buttonClasses } from "@/components/button";
+import { SITE_URLS } from "@/lib/site-config";
+
+const PROOF_POINTS = [
+  { value: "5+", label: "years of professional software engineering experience" },
+  { value: "30%", label: "AWS infrastructure cost reduction" },
+  { value: "30%", label: "database retrieval performance improvement" },
+] as const;
 
 export default function Home() {
   return (
-    <Section>
-      <Container>
-        <p className="font-mono text-meta uppercase tracking-[0.08em] text-foreground-subtle">Portfolio</p>
-        <h1 className="mt-2 text-h1 font-semibold tracking-tight text-foreground">Homepage content arrives in Phase 3</h1>
-        <p className="mt-4 max-w-prose text-body-lg text-foreground-muted">
-          This placeholder validates the site shell, container widths, and spacing ahead of the real hero and project sections.
-        </p>
-      </Container>
-    </Section>
+    <>
+      <Section className="pb-12 sm:pb-16 lg:pb-20">
+        <Container>
+          <div className="grid items-center gap-12 lg:grid-cols-[1.15fr_0.85fr] lg:gap-16">
+            <div className="flex flex-col gap-6">
+              <p className="font-mono text-meta uppercase tracking-[0.08em] text-foreground-subtle">
+                Software Engineer
+              </p>
+
+              <div>
+                <h1 className="text-display font-semibold tracking-tight text-foreground">Peter Logo</h1>
+                <p className="mt-3 text-h3 font-medium text-foreground-muted">
+                  Full-stack engineer specializing in backend systems, AI-native applications, and cloud
+                  infrastructure.
+                </p>
+              </div>
+
+              <p className="max-w-prose text-body-lg text-foreground-muted">
+                I build production systems across TypeScript, React, and Node.js on AWS — spanning AI
+                infrastructure, payments, and data-intensive platforms, end to end.
+              </p>
+
+              <div className="flex flex-wrap items-center gap-4">
+                <Link href="/work" className={buttonClasses("primary")}>
+                  View selected work
+                </Link>
+                <a href={SITE_URLS.resume} download className={buttonClasses("secondary")}>
+                  Download résumé
+                </a>
+              </div>
+
+              <div className="flex items-center gap-4 text-meta">
+                <a
+                  href={SITE_URLS.github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-medium text-foreground-muted no-underline hover:text-foreground"
+                >
+                  GitHub
+                </a>
+                <span aria-hidden className="text-border-strong">
+                  /
+                </span>
+                <a
+                  href={SITE_URLS.linkedin}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-medium text-foreground-muted no-underline hover:text-foreground"
+                >
+                  LinkedIn
+                </a>
+              </div>
+            </div>
+
+            <div className="mx-auto w-full max-w-xs lg:mx-0 lg:max-w-none">
+              <div className="overflow-hidden rounded-lg border border-border bg-surface">
+                <div className="relative aspect-square">
+                  <Image
+                    src="/Peter-Logo-Photo.jpg"
+                    alt="Portrait of Peter Logo"
+                    fill
+                    sizes="(min-width: 1024px) 360px, 320px"
+                    className="object-cover"
+                    priority
+                  />
+                </div>
+                <div className="flex items-center justify-between gap-2 border-t border-border px-4 py-3">
+                  <span className="font-mono text-mono uppercase tracking-[0.08em] text-foreground-subtle">
+                    Peter Logo
+                  </span>
+                  <span className="font-mono text-mono uppercase tracking-[0.08em] text-foreground-subtle">
+                    Full-Stack Engineer
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </Container>
+      </Section>
+
+      <Section spacing="compact" className="border-y border-border bg-surface">
+        <Container>
+          <p className="font-mono text-meta uppercase tracking-[0.08em] text-foreground-subtle">Track record</p>
+
+          <div className="mt-6 grid grid-cols-1 divide-y divide-border sm:grid-cols-3 sm:divide-x sm:divide-y-0">
+            {PROOF_POINTS.map((point) => (
+              <div
+                key={point.label}
+                className="flex flex-col gap-1 py-4 first:pt-0 last:pb-0 sm:px-6 sm:py-0 sm:first:pl-0 sm:last:pr-0"
+              >
+                <p className="text-h2 font-semibold tracking-tight text-foreground">{point.value}</p>
+                <p className="max-w-[26ch] text-meta text-foreground-muted">{point.label}</p>
+              </div>
+            ))}
+          </div>
+
+          <p className="mt-6 max-w-prose border-t border-border pt-6 text-body text-foreground-muted sm:mt-8 sm:pt-8">
+            Also shipped production systems spanning{" "}
+            <strong className="font-semibold text-foreground">AI infrastructure</strong>,{" "}
+            <strong className="font-semibold text-foreground">payments</strong>, and{" "}
+            <strong className="font-semibold text-foreground">cloud data systems</strong>.
+          </p>
+        </Container>
+      </Section>
+    </>
   );
 }
