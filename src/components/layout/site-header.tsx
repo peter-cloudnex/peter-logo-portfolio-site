@@ -108,7 +108,7 @@ export function SiteHeader() {
   }, [menuOpen]);
 
   return (
-    <header className="sticky top-0 z-40 border-b border-border bg-background/90 backdrop-blur-sm">
+    <header className="sticky top-0 z-40 border-b border-border bg-background/90 backdrop-blur-sm print:hidden">
       <Container width="wide" className="flex h-16 items-center justify-between gap-4">
         <Link
           href="/"

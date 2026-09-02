@@ -2,7 +2,8 @@
 // PROJECTS because that type feeds compact homepage cards — this feeds full /work/[slug] pages.
 //
 // Every fact below traces back to PROJECTS/EXPERIENCE in portfolio.ts or the case-study brief.
-// Where a section has no verified source material, `note` says so instead of inventing detail.
+// Where a section has no verified source material, omit it. A `note` only accompanies real
+// items when further detail exists but is unpublished — never as a stand-in for the section.
 
 export type TechnicalDecision = {
   decision: string;
@@ -115,7 +116,6 @@ export const CASE_STUDIES: Record<string, CaseStudy> = {
         "Rate limits and monthly spend caps live in production, with clear error responses to prevent runaway usage and surprise bills.",
         "A prepaid credit wallet live for the Nigeria launch, removing payment friction for developers there.",
       ],
-      note: "Quantitative outcome metrics (adoption, latency, cost figures) aren't published yet.",
     },
     links: [{ label: "modelrail.dev", href: "https://modelrail.dev" }],
   },
@@ -201,10 +201,7 @@ export const CASE_STUDIES: Record<string, CaseStudy> = {
     role: [
       "Designed and tuned Neo4j graph models and Cypher queries for relationship-based search, filtering, and analytics, and set up the AWS infrastructure serving them.",
     ],
-    constraints: {
-      items: [],
-      note: "Specific product and data constraints for Resonance Holdings aren't published here.",
-    },
+    constraints: { items: [] },
     architecture: {
       intro: [
         "Graph models and Cypher queries in Neo4j power relationship-based search, filtering, and analytics — connecting entities the way the underlying relationships actually work, rather than flattening them into rows.",
@@ -230,10 +227,7 @@ export const CASE_STUDIES: Record<string, CaseStudy> = {
         cost: "A graph database fits relationship-heavy queries well, but it's a less familiar operational surface than relational stores, and not every part of the product's data is naturally graph-shaped.",
       },
     ],
-    challenges: {
-      items: [],
-      note: "Specific challenges from the Resonance Holdings build aren't published here.",
-    },
+    challenges: { items: [] },
     outcome: {
       metrics: [],
       bullets: [
@@ -241,7 +235,6 @@ export const CASE_STUDIES: Record<string, CaseStudy> = {
         "Proprietary and third-party AI models integrated into the data pipeline to improve recommendations.",
         "AWS infrastructure (EKS, S3, Lambda, API Gateway) set up for secure, scalable deployment.",
       ],
-      note: "Measurable outcome metrics for Resonance Holdings aren't published yet.",
     },
     links: [],
   },

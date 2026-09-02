@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { Container } from "@/components/layout/container";
 import { Section } from "@/components/layout/section";
 import { SectionHeading } from "@/components/section-heading";
@@ -43,6 +44,21 @@ export function ProjectMeta({ project }: { project: Project }) {
   );
 }
 
+export function ProjectVisual({ project }: { project: Project }) {
+  if (!project.image) return null;
+  return (
+    <div className="relative aspect-[16/10] overflow-hidden rounded-lg border border-border bg-surface">
+      <Image
+        src={project.image.src}
+        alt={project.image.alt}
+        fill
+        sizes="(min-width: 1024px) 640px, 100vw"
+        className="object-cover"
+      />
+    </div>
+  );
+}
+
 function CaseStudyLink({ project, className = "" }: { project: Project; className?: string }) {
   return (
     <Link
@@ -76,6 +92,7 @@ function FeaturedCard({ project }: { project: Project }) {
           </h3>
           <p className="max-w-prose text-body-lg text-foreground-muted">{project.context}</p>
           <p className="max-w-prose text-body text-foreground">{project.responsibility}</p>
+          <ProjectVisual project={project} />
           <ReadCaseStudyHint />
         </div>
 

@@ -53,7 +53,7 @@ export default function ResumePage() {
               <p className="mt-2 text-h3 font-medium text-foreground-muted">{RESUME_PROFILE.title}</p>
               <p className="mt-2 text-meta text-foreground-subtle">{RESUME_PROFILE.location}</p>
             </div>
-            <a href={SITE_URLS.resume} download className={buttonClasses("primary", "shrink-0 self-start")}>
+            <a href={SITE_URLS.resume} download className={buttonClasses("primary", "shrink-0 self-start print:hidden")}>
               Download résumé
             </a>
           </div>
@@ -130,7 +130,7 @@ export default function ResumePage() {
             <ResumeSection title="Professional experience">
               <ol className="flex flex-col gap-8">
                 {RESUME_EXPERIENCE.map((entry) => (
-                  <li key={`${entry.company}-${entry.period}`}>
+                  <li key={`${entry.company}-${entry.period}`} className="print:break-inside-avoid">
                     <div className="flex flex-col gap-1 sm:flex-row sm:items-baseline sm:justify-between sm:gap-4">
                       <div>
                         <p className="font-semibold text-foreground">{entry.role}</p>
@@ -153,7 +153,7 @@ export default function ResumePage() {
             <ResumeSection title="Projects">
               <ol className="flex flex-col gap-8">
                 {RESUME_PROJECTS.map((project) => (
-                  <li key={project.name}>
+                  <li key={project.name} className="print:break-inside-avoid">
                     <div className="flex flex-col gap-1 sm:flex-row sm:items-baseline sm:justify-between sm:gap-4">
                       <div>
                         <p className="font-semibold text-foreground">{project.name}</p>
@@ -206,7 +206,7 @@ export default function ResumePage() {
             </ResumeSection>
           </div>
 
-          <div className="mt-12 border-t border-border pt-8">
+          <div className="mt-12 border-t border-border pt-8 print:hidden">
             <a href={SITE_URLS.resumeDocx} download className={buttonClasses("secondary")}>
               Download Word (.docx)
             </a>

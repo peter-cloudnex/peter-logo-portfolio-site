@@ -1,6 +1,13 @@
 // Centralized project, experience, and skills data — sourced from the résumé so
 // homepage sections (and future /work, /experience pages) share one source of truth.
 
+export type ProjectImage = {
+  src: string;
+  alt: string;
+  width: number;
+  height: number;
+};
+
 export type Project = {
   slug: string;
   name: string;
@@ -11,6 +18,7 @@ export type Project = {
   proof: string[];
   stack: string[];
   featured?: boolean;
+  image?: ProjectImage;
 };
 
 export const PROJECTS: Project[] = [

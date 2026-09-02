@@ -58,7 +58,7 @@ function sectionHasContent(
     case "role":
       return caseStudy.role.length > 0;
     case "constraints":
-      return caseStudy.constraints.items.length > 0 || Boolean(caseStudy.constraints.note);
+      return caseStudy.constraints.items.length > 0;
     case "architecture":
       return caseStudy.architecture.intro.length > 0 || hasDiagram;
     case "decisions":
@@ -66,13 +66,9 @@ function sectionHasContent(
     case "tradeoffs":
       return caseStudy.tradeoffs.length > 0;
     case "challenges":
-      return caseStudy.challenges.items.length > 0 || Boolean(caseStudy.challenges.note);
+      return caseStudy.challenges.items.length > 0;
     case "outcome":
-      return (
-        caseStudy.outcome.metrics.length > 0 ||
-        caseStudy.outcome.bullets.length > 0 ||
-        Boolean(caseStudy.outcome.note)
-      );
+      return caseStudy.outcome.metrics.length > 0 || caseStudy.outcome.bullets.length > 0;
     case "technologies":
       return project.stack.length > 0;
     case "links":
@@ -187,7 +183,7 @@ export default function CaseStudyPage({ project, caseStudy, period, previous, ne
               ) : null}
 
               {show("architecture") ? (
-                <CaseStudySection id="architecture" title="architecture" variant="technical">
+                <CaseStudySection id="architecture" title="Architecture" variant="technical">
                   {caseStudy.architecture.intro.map((paragraph) => (
                     <p key={paragraph} className="max-w-prose text-body text-foreground-muted">
                       {paragraph}
@@ -202,7 +198,7 @@ export default function CaseStudyPage({ project, caseStudy, period, previous, ne
               ) : null}
 
               {show("decisions") ? (
-                <CaseStudySection id="decisions" title="technical decisions" variant="technical">
+                <CaseStudySection id="decisions" title="Technical decisions" variant="technical">
                   <div className={caseStudy.decisions.length > 1 ? "grid gap-4 sm:grid-cols-2" : "flex flex-col gap-4"}>
                     {caseStudy.decisions.map((decision) => (
                       <TechnicalDecision key={decision.decision} decision={decision} />
@@ -212,7 +208,7 @@ export default function CaseStudyPage({ project, caseStudy, period, previous, ne
               ) : null}
 
               {show("tradeoffs") ? (
-                <CaseStudySection id="tradeoffs" title="trade-offs" variant="technical">
+                <CaseStudySection id="tradeoffs" title="Trade-offs" variant="technical">
                   <div className={caseStudy.tradeoffs.length > 1 ? "grid gap-4 sm:grid-cols-2" : "flex flex-col gap-4"}>
                     {caseStudy.tradeoffs.map((tradeoff) => (
                       <TradeoffCallout key={tradeoff.choice} tradeoff={tradeoff} />
@@ -222,7 +218,7 @@ export default function CaseStudyPage({ project, caseStudy, period, previous, ne
               ) : null}
 
               {show("challenges") ? (
-                <CaseStudySection id="challenges" title="challenges" variant="technical">
+                <CaseStudySection id="challenges" title="Challenges" variant="technical">
                   {caseStudy.challenges.items.length > 0 ? <BulletList items={caseStudy.challenges.items} /> : null}
                   {caseStudy.challenges.note ? <ContentPlaceholder note={caseStudy.challenges.note} /> : null}
                 </CaseStudySection>

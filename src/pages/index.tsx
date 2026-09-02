@@ -14,8 +14,8 @@ import { FinalCta } from "@/components/home/final-cta";
 
 const PROOF_POINTS = [
   { value: "5+", label: "years of professional software engineering experience" },
-  { value: "30%", label: "AWS infrastructure cost reduction" },
-  { value: "30%", label: "database retrieval performance improvement" },
+  { value: "30%", label: "AWS infrastructure cost reduction", source: "KrownPay" },
+  { value: "30%", label: "database retrieval performance improvement", source: "Montra Interactive" },
 ] as const;
 
 export default function Home() {
@@ -128,6 +128,11 @@ export default function Home() {
               >
                 <p className="text-h2 font-semibold tracking-tight text-foreground">{point.value}</p>
                 <p className="max-w-[26ch] text-meta text-foreground-muted">{point.label}</p>
+                {"source" in point ? (
+                  <p className="font-mono text-mono uppercase tracking-[0.08em] text-foreground-subtle">
+                    {point.source}
+                  </p>
+                ) : null}
               </div>
             ))}
           </div>

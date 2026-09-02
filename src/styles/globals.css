@@ -120,3 +120,29 @@
     scroll-behavior: auto !important;
   }
 }
+
+@media print {
+  :root,
+  [data-theme="dark"] {
+    --background: #ffffff;
+    --surface: #ffffff;
+    --surface-muted: #ffffff;
+    --foreground: #000000;
+    --foreground-muted: #222222;
+    --foreground-subtle: #333333;
+    --border: #cccccc;
+    --border-strong: #999999;
+    --brand: #000000;
+    --brand-hover: #000000;
+    --brand-soft: #ffffff;
+  }
+
+  body {
+    background: #ffffff;
+    color: #000000;
+  }
+
+  a {
+    color: inherit;
+  }
+}

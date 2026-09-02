@@ -1,5 +1,5 @@
 import type { Project } from "@/lib/portfolio";
-import { ProjectMeta } from "@/components/home/selected-work";
+import { ProjectMeta, ProjectVisual } from "@/components/home/selected-work";
 import { Tag } from "@/components/tag";
 
 // The recruiter-skimmable top of a case study: category, name, one line of context, stack —
@@ -23,6 +23,7 @@ export function CaseStudyHeader({
         ) : null}
       </div>
       <p className="max-w-prose text-body-lg text-foreground-muted">{tagline}</p>
+      <ProjectVisual project={project} />
       {project.stack.length > 0 ? (
         <div className="flex flex-wrap gap-2">
           {project.stack.map((tech) => (
