@@ -4,6 +4,10 @@ import { Container } from "@/components/layout/container";
 import { Section } from "@/components/layout/section";
 import { buttonClasses } from "@/components/button";
 import { SITE_URLS } from "@/lib/site-config";
+import { SelectedWork } from "@/components/home/selected-work";
+import { ExperienceTimeline } from "@/components/home/experience-timeline";
+import { TechnicalExpertise } from "@/components/home/technical-expertise";
+import { EngineeringApproach } from "@/components/home/engineering-approach";
 
 const PROOF_POINTS = [
   { value: "5+", label: "years of professional software engineering experience" },
@@ -117,6 +121,11 @@ export default function Home() {
           </p>
         </Container>
       </Section>
+
+      <SelectedWork />
+      <ExperienceTimeline />
+      <TechnicalExpertise />
+      <EngineeringApproach />
     </>
   );
 }
