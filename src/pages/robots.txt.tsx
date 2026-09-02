@@ -3,7 +3,7 @@ import { SITE_ORIGIN, SITE_ORIGIN_CONFIGURED } from "@/lib/site-config";
 
 export const getServerSideProps: GetServerSideProps = async ({ res }) => {
   const body = SITE_ORIGIN_CONFIGURED
-    ? `User-agent: *\nAllow: /\nDisallow: /dev\n\nSitemap: ${SITE_ORIGIN}/sitemap.xml\n`
+    ? `User-agent: *\nAllow: /\n\nSitemap: ${SITE_ORIGIN}/sitemap.xml\n`
     : `User-agent: *\nDisallow: /\n`;
 
   res.setHeader("Content-Type", "text/plain; charset=utf-8");

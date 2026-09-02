@@ -38,7 +38,7 @@ export function SiteFooter() {
                 </Link>
               ))}
             </nav>
-            <RecruiterActions />
+            <RecruiterActions location="footer" />
           </div>
         </div>
 

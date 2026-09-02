@@ -1,40 +1,41 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/pages/api-reference/create-next-app).
+# Peter Logo — portfolio site
 
-## Getting Started
+Personal portfolio for Peter Logo (full-stack engineer). Next.js Pages Router, TypeScript, Tailwind CSS, deployed on Vercel with Plausible Analytics.
 
-First, run the development server:
+## Setup
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
+pnpm install
+cp .env.example .env.local
 pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+## Environment
 
-[API routes](https://nextjs.org/docs/pages/building-your-application/routing/api-routes) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+See `.env.example`. For production on Vercel set at least:
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/pages/building-your-application/routing/api-routes) instead of React pages.
+- `NEXT_PUBLIC_SITE_ORIGIN` — e.g. `https://peterlogo.dev` (canonical / OG / sitemap)
+- `NEXT_PUBLIC_PLAUSIBLE_DOMAIN` — e.g. `peterlogo.dev`
 
-This project uses [`next/font`](https://nextjs.org/docs/pages/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Analytics details, event taxonomy, and dashboard setup: [docs/analytics.md](docs/analytics.md).
 
-## Learn More
+## Scripts
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+pnpm dev      # development server
+pnpm build    # production build
+pnpm start    # serve production build
+pnpm lint     # ESLint
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn-pages-router) - an interactive Next.js tutorial.
+## Deploy (Vercel)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+1. Import this repo in Vercel.
+2. Framework preset: Next.js (defaults are fine).
+3. Add the production env vars above.
+4. Point the custom domain at the Vercel project.
+5. Complete Plausible goals/funnels per [docs/analytics.md](docs/analytics.md).
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/pages/building-your-application/deploying) for more details.
+`.env.local` is gitignored. Do not commit secrets (this project has none required beyond public config).

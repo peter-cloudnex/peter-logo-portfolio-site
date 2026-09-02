@@ -4,6 +4,7 @@ import { Section } from "@/components/layout/section";
 import { buttonClasses } from "@/components/button";
 import { RecruiterActions } from "@/components/recruiter-actions";
 import { Seo } from "@/components/seo";
+import { trackEmailClick } from "@/lib/analytics";
 import { SITE_EMAIL_HREF, SITE_URLS } from "@/lib/site-config";
 
 export default function ContactPage() {
@@ -23,10 +24,14 @@ export default function ContactPage() {
           </p>
 
           <div className="mt-10 flex flex-col gap-4">
-            <a href={SITE_EMAIL_HREF} className={buttonClasses("primary", "self-start")}>
+            <a
+              href={SITE_EMAIL_HREF}
+              className={buttonClasses("primary", "self-start")}
+              onClick={() => trackEmailClick({ location: "contact", page: "/contact" })}
+            >
               Email {SITE_URLS.email}
             </a>
-            <RecruiterActions includeResumePage className="mt-2" />
+            <RecruiterActions includeResumePage location="contact" className="mt-2" />
           </div>
 
           <p className="mt-10 max-w-prose text-body text-foreground-muted">

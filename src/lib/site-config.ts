@@ -2,6 +2,7 @@
 
 // Set NEXT_PUBLIC_SITE_ORIGIN (https://your.domain) before launch.
 // Until then canonical/OG URLs are omitted and pages send noindex.
+// Analytics: see docs/analytics.md (NEXT_PUBLIC_PLAUSIBLE_DOMAIN).
 const PLACEHOLDER_ORIGIN = "https://your-domain.com";
 
 function resolveSiteOrigin(): string {

@@ -3,6 +3,7 @@ import { Container } from "@/components/layout/container";
 import { Section } from "@/components/layout/section";
 import { SectionHeading } from "@/components/section-heading";
 import { buttonClasses } from "@/components/button";
+import { trackEmailClick } from "@/lib/analytics";
 import { SITE_EMAIL_HREF, SITE_TITLE } from "@/lib/site-config";
 
 export function FinalCta() {
@@ -17,7 +18,11 @@ export function FinalCta() {
           />
 
           <div className="flex flex-wrap items-center gap-4">
-            <a href={SITE_EMAIL_HREF} className={buttonClasses("primary")}>
+            <a
+              href={SITE_EMAIL_HREF}
+              className={buttonClasses("primary")}
+              onClick={() => trackEmailClick({ location: "final_cta", page: "/" })}
+            >
               Email me
             </a>
             <Link href="/resume" className={buttonClasses("secondary")}>
