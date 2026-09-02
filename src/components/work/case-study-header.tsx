@@ -17,7 +17,7 @@ export function CaseStudyHeader({
     <header className="flex flex-col gap-6 border-b border-border pb-10">
       <ProjectMeta project={project} />
       <div>
-        <h1 className="text-display font-semibold tracking-tight text-foreground">{project.name}</h1>
+        <h1 className="text-h1 font-semibold tracking-tight text-foreground">{project.name}</h1>
         {period ? (
           <p className="mt-2 font-mono text-mono uppercase tracking-[0.08em] text-foreground-subtle">{period}</p>
         ) : null}

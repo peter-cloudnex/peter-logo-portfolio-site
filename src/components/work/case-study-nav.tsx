@@ -12,7 +12,7 @@ export function CaseStudyNav({ sections }: { sections: NavSection[] }) {
         <ul className="mt-3 flex flex-col gap-2">
           {sections.map((section) => (
             <li key={section.id}>
-              <a href={`#${section.id}`} className="text-body text-foreground-muted no-underline hover:text-foreground">
+              <a href={`#${section.id}`} className="text-body text-foreground-muted no-underline transition-colors duration-150 ease-out hover:text-foreground">
                 {section.label}
               </a>
             </li>
@@ -25,7 +25,7 @@ export function CaseStudyNav({ sections }: { sections: NavSection[] }) {
         <ul className="mt-3 flex flex-col gap-2 border-l border-border pl-4">
           {sections.map((section) => (
             <li key={section.id}>
-              <a href={`#${section.id}`} className="text-meta text-foreground-muted no-underline hover:text-foreground">
+              <a href={`#${section.id}`} className="text-meta text-foreground-muted no-underline transition-colors duration-150 ease-out hover:text-foreground">
                 {section.label}
               </a>
             </li>

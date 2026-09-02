@@ -6,7 +6,7 @@ export function Tag({ children, muted = false }: { children: ReactNode; muted?: 
     <span
       className={`inline-flex items-center rounded-sm border px-2 py-0.5 font-mono text-mono ${
         muted
-          ? "border-transparent bg-transparent text-foreground-subtle"
+          ? "border-border/60 bg-transparent text-foreground-muted"
           : "border-border bg-surface-muted text-foreground-muted"
       }`}
     >

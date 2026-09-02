@@ -2,11 +2,14 @@ import Link from "next/link";
 import type { ReactNode } from "react";
 
 const CLASSES =
-  "group inline-flex items-center gap-1 font-medium text-foreground no-underline underline-offset-4 hover:text-brand hover:underline";
+  "group inline-flex items-center gap-1 font-medium text-foreground no-underline underline-offset-4 transition-colors duration-150 ease-out hover:text-brand hover:underline";
 
 function Arrow() {
   return (
-    <span aria-hidden className="transition-transform motion-reduce:transition-none group-hover:translate-x-0.5">
+    <span
+      aria-hidden
+      className="transition-transform duration-150 ease-out motion-reduce:transition-none group-hover:translate-x-0.5"
+    >
       →
     </span>
   );

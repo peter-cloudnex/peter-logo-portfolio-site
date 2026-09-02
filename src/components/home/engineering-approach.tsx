@@ -9,7 +9,7 @@ export function EngineeringApproach() {
       <Container>
         <SectionHeading eyebrow="Engineering approach" title="How I work" />
 
-        <div className="mt-10 grid gap-x-8 gap-y-10 sm:grid-cols-2">
+        <div className="mt-10 grid gap-8 sm:grid-cols-2">
           {PRINCIPLES.map((principle) => (
             <div key={principle.title} className="flex flex-col gap-2">
               <h3 className="text-h3 font-semibold tracking-tight text-foreground">{principle.title}</h3>

@@ -8,7 +8,7 @@ type RecruiterActionsProps = {
 };
 
 const linkClass =
-  "font-medium text-foreground-muted no-underline transition-colors hover:text-foreground focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand";
+  "font-medium text-foreground-muted no-underline transition-colors duration-150 ease-out hover:text-foreground focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand";
 
 function Separator() {
   return (

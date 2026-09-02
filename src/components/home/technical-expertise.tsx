@@ -18,7 +18,7 @@ export function TechnicalExpertise() {
           {EXPERTISE_GROUPS.map((group) => (
             <div key={group.name} className="flex flex-col gap-3 border-t border-border pt-4">
               <div>
-                <h3 className="font-semibold text-foreground">{group.name}</h3>
+                <h3 className="text-h3 font-semibold tracking-tight text-foreground">{group.name}</h3>
                 <p className="mt-1 text-meta text-foreground-muted">{group.description}</p>
               </div>
               <div className="flex flex-wrap gap-1.5">

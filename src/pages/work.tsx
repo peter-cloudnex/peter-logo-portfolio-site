@@ -20,7 +20,7 @@ export default function WorkPage() {
           </p>
         </Container>
       </Section>
-      <SelectedWork />
+      <SelectedWork showHeading={false} />
     </>
   );
 }

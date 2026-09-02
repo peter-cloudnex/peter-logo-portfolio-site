@@ -12,15 +12,19 @@ const NAV_ITEMS = [
   { href: "/resume", label: "Resume" },
 ] as const;
 
+function isNavActive(pathname: string, href: string) {
+  return pathname === href || pathname.startsWith(`${href}/`);
+}
+
 function NavLink({ href, label, className = "", onClick }: { href: string; label: string; className?: string; onClick?: () => void }) {
   const { pathname } = useRouter();
-  const isActive = pathname === href;
+  const isActive = isNavActive(pathname, href);
   return (
     <Link
       href={href}
       aria-current={isActive ? "page" : undefined}
       onClick={onClick}
-      className={`no-underline font-medium text-body transition-colors hover:text-foreground ${
+      className={`no-underline font-medium text-body transition-colors duration-150 ease-out hover:text-foreground ${
         isActive ? "text-foreground" : "text-foreground-muted"
       } ${className}`}
     >
@@ -44,6 +48,9 @@ export function SiteHeader() {
 
   useEffect(() => {
     if (!menuOpen) return;
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+
     const controller = new AbortController();
     const onKeydown = (event: KeyboardEvent) => {
       if (event.key !== "Escape") return;
@@ -57,13 +64,19 @@ export function SiteHeader() {
     };
     document.addEventListener("keydown", onKeydown, { signal: controller.signal });
     document.addEventListener("pointerdown", onPointerDown, { signal: controller.signal });
-    return () => controller.abort();
+    return () => {
+      controller.abort();
+      document.body.style.overflow = previousOverflow;
+    };
   }, [menuOpen]);
 
   return (
-    <header className="sticky top-0 z-40 border-b border-border bg-background">
+    <header className="sticky top-0 z-40 border-b border-border bg-background/90 backdrop-blur-sm">
       <Container width="wide" className="flex h-16 items-center justify-between gap-4">
-        <Link href="/" className="no-underline text-body-lg font-semibold tracking-tight text-foreground">
+        <Link
+          href="/"
+          className="no-underline text-body-lg font-semibold tracking-tight text-foreground transition-colors duration-150 ease-out"
+        >
           Peter <span className="text-brand">Logo</span>
         </Link>
 
@@ -86,27 +99,35 @@ export function SiteHeader() {
           aria-expanded={menuOpen}
           aria-controls="mobile-nav"
           onClick={() => setMenuOpen((open) => !open)}
-          className="inline-flex h-11 w-11 items-center justify-center rounded-md text-foreground md:hidden"
+          className="inline-flex h-11 w-11 items-center justify-center rounded-md text-foreground transition-colors duration-150 ease-out hover:bg-surface-muted md:hidden"
         >
           <span className="sr-only">{menuOpen ? "Close menu" : "Open menu"}</span>
           <MenuIcon open={menuOpen} />
         </button>
       </Container>
 
-      <div id="mobile-nav" ref={panelRef} hidden={!menuOpen} className="border-t border-border bg-background md:hidden">
-        <Container width="wide" className="flex flex-col gap-1 py-4">
-          <nav aria-label="Primary" className="flex flex-col">
-            {NAV_ITEMS.map((item) => (
-              <NavLink key={item.href} {...item} className="block py-3 text-body-lg" onClick={() => setMenuOpen(false)} />
-            ))}
-          </nav>
-          <div className="mt-2 flex items-center justify-between gap-4 border-t border-border pt-4">
-            <ThemeToggle />
-            <Link href="/contact" onClick={() => setMenuOpen(false)} className={buttonClasses("primary", "text-meta px-4 py-2")}>
-              Contact
-            </Link>
-          </div>
-        </Container>
+      <div
+        id="mobile-nav"
+        ref={panelRef}
+        className={`grid border-border bg-background transition-[grid-template-rows] duration-200 ease-out motion-reduce:transition-none md:hidden ${
+          menuOpen ? "grid-rows-[1fr] border-t" : "grid-rows-[0fr]"
+        }`}
+      >
+        <div className="overflow-hidden">
+          <Container width="wide" className="flex flex-col gap-1 py-4">
+            <nav aria-label="Primary" className="flex flex-col">
+              {NAV_ITEMS.map((item) => (
+                <NavLink key={item.href} {...item} className="block py-3 text-body-lg" onClick={() => setMenuOpen(false)} />
+              ))}
+            </nav>
+            <div className="mt-2 flex flex-wrap items-center justify-between gap-4 border-t border-border pt-4">
+              <ThemeToggle />
+              <Link href="/contact" onClick={() => setMenuOpen(false)} className={buttonClasses("primary", "text-meta px-4 py-2")}>
+                Contact
+              </Link>
+            </div>
+          </Container>
+        </div>
       </div>
     </header>
   );

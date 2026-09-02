@@ -31,11 +31,11 @@ export default function ContactPage() {
 
           <p className="mt-10 max-w-prose text-body text-foreground-muted">
             Prefer context first? Start with{" "}
-            <Link href="/work" className="font-medium text-foreground no-underline hover:text-brand">
+            <Link href="/work" className="font-medium text-foreground no-underline transition-colors duration-150 ease-out hover:text-brand">
               selected work
             </Link>{" "}
             or the{" "}
-            <Link href="/resume" className="font-medium text-foreground no-underline hover:text-brand">
+            <Link href="/resume" className="font-medium text-foreground no-underline transition-colors duration-150 ease-out hover:text-brand">
               résumé
             </Link>
             .

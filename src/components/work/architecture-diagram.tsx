@@ -5,7 +5,8 @@ import type { ReactNode } from "react";
 export function ArchitectureDiagram({ caption, children }: { caption: string; children: ReactNode }) {
   return (
     <figure className="rounded-lg border border-border bg-surface p-4 sm:p-6">
-      <div className="overflow-x-auto">{children}</div>
+      <div className="overflow-x-auto overscroll-x-contain">{children}</div>
+      <p className="mt-3 text-meta text-foreground-subtle sm:hidden">Scroll horizontally to view the full diagram.</p>
       <figcaption className="mt-4 border-t border-border pt-3 text-meta text-foreground-subtle">{caption}</figcaption>
     </figure>
   );

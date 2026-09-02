@@ -31,7 +31,7 @@ export function SiteFooter() {
                 <Link
                   key={link.href}
                   href={link.href}
-                  className="no-underline text-meta font-medium text-foreground-muted hover:text-foreground"
+                  className="no-underline text-meta font-medium text-foreground-muted transition-colors duration-150 ease-out hover:text-foreground"
                 >
                   {link.label}
                 </Link>

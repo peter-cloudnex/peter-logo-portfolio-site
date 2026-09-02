@@ -27,7 +27,8 @@
   --surface-muted: #1e293b;
   --foreground: #f1f5f9;
   --foreground-muted: #94a3b8;
-  --foreground-subtle: #64748b;
+  /* Lighter than light-mode subtle so eyebrows/captions hold contrast on near-black surfaces. */
+  --foreground-subtle: #8494a7;
   --border: #334155;
   --border-strong: #475569;
   --brand: #60a5fa;
@@ -105,5 +106,17 @@
   ::selection {
     background: var(--color-brand-soft);
     color: var(--color-foreground);
+  }
+}
+
+/* Restrained motion only — kill decorative timing when the user asks for less motion. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
 }

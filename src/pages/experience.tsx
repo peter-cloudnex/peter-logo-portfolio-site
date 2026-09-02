@@ -50,7 +50,7 @@ export default function ExperiencePage() {
 
           <p className="mt-10 text-body text-foreground-muted">
             For the complete document, including education and certifications, see the{" "}
-            <Link href="/resume" className="font-medium text-foreground no-underline hover:text-brand">
+            <Link href="/resume" className="font-medium text-foreground no-underline transition-colors duration-150 ease-out hover:text-brand">
               résumé
             </Link>
             .

@@ -19,7 +19,7 @@ const PROOF_POINTS = [
 export default function Home() {
   return (
     <>
-      <Section className="pb-12 sm:pb-16 lg:pb-20">
+      <Section>
         <Container>
           <div className="grid items-center gap-12 lg:grid-cols-[1.15fr_0.85fr] lg:gap-16">
             <div className="flex flex-col gap-6">
@@ -54,7 +54,7 @@ export default function Home() {
                   href={SITE_URLS.github}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="font-medium text-foreground-muted no-underline hover:text-foreground focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand"
+                  className="font-medium text-foreground-muted no-underline transition-colors duration-150 ease-out hover:text-foreground focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand"
                 >
                   GitHub
                 </a>
@@ -65,7 +65,7 @@ export default function Home() {
                   href={SITE_URLS.linkedin}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="font-medium text-foreground-muted no-underline hover:text-foreground focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand"
+                  className="font-medium text-foreground-muted no-underline transition-colors duration-150 ease-out hover:text-foreground focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand"
                 >
                   LinkedIn
                 </a>
@@ -74,7 +74,7 @@ export default function Home() {
                 </span>
                 <a
                   href={`mailto:${SITE_URLS.email}`}
-                  className="font-medium text-foreground-muted no-underline hover:text-foreground focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand"
+                  className="font-medium text-foreground-muted no-underline transition-colors duration-150 ease-out hover:text-foreground focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand"
                 >
                   Email
                 </a>
@@ -89,7 +89,7 @@ export default function Home() {
                     alt="Portrait of Peter Logo"
                     fill
                     sizes="(min-width: 1024px) 360px, 320px"
-                    className="object-cover"
+                    className="object-cover dark:brightness-[0.92] dark:contrast-[1.03]"
                     priority
                   />
                 </div>

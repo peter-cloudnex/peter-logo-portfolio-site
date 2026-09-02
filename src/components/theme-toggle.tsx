@@ -17,7 +17,7 @@ export function ThemeToggle() {
           type="button"
           aria-pressed={preference === option.value}
           onClick={() => setPreference(option.value)}
-          className={`rounded-sm px-3 py-1.5 text-meta font-medium transition-colors ${
+          className={`rounded-sm px-3 py-1.5 text-meta font-medium transition-colors duration-150 ease-out ${
             preference === option.value ? "bg-brand-soft text-brand" : "text-foreground-muted hover:text-foreground"
           }`}
         >

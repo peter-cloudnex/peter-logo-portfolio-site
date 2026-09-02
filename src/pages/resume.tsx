@@ -63,7 +63,7 @@ export default function ResumePage() {
           >
             <a
               href={SITE_EMAIL_HREF}
-              className="font-medium text-foreground-muted no-underline hover:text-foreground"
+              className="font-medium text-foreground-muted no-underline transition-colors duration-150 ease-out hover:text-foreground"
             >
               {SITE_URLS.email}
             </a>
@@ -74,7 +74,7 @@ export default function ResumePage() {
               href={SITE_URLS.github}
               target="_blank"
               rel="noopener noreferrer"
-              className="font-medium text-foreground-muted no-underline hover:text-foreground"
+              className="font-medium text-foreground-muted no-underline transition-colors duration-150 ease-out hover:text-foreground"
             >
               GitHub
             </a>
@@ -85,7 +85,7 @@ export default function ResumePage() {
               href={SITE_URLS.linkedin}
               target="_blank"
               rel="noopener noreferrer"
-              className="font-medium text-foreground-muted no-underline hover:text-foreground"
+              className="font-medium text-foreground-muted no-underline transition-colors duration-150 ease-out hover:text-foreground"
             >
               LinkedIn
             </a>
@@ -161,7 +161,7 @@ export default function ResumePage() {
                           href={project.href}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="text-meta font-medium text-foreground-muted no-underline hover:text-foreground"
+                          className="text-meta font-medium text-foreground-muted no-underline transition-colors duration-150 ease-out hover:text-foreground"
                         >
                           {project.href.replace(/^https?:\/\//, "")}
                         </a>
