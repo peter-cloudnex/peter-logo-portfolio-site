@@ -28,6 +28,8 @@ export type CaseStudyLink = {
 
 export type CaseStudy = {
   slug: string;
+  seoTitle: string;
+  seoDescription?: string;
   overview: string[];
   context: string[];
   problem: string[];
@@ -44,6 +46,9 @@ export type CaseStudy = {
 export const CASE_STUDIES: Record<string, CaseStudy> = {
   modelrail: {
     slug: "modelrail",
+    seoTitle: "ModelRail: Production AI gateway",
+    seoDescription:
+      "ModelRail is a production AI gateway with one API for routing, failover, usage limits, and billing across multiple language models.",
     overview: [
       "ModelRail is a production AI gateway: one API for routing, failover, usage limits, and billing across multiple language models — launching first for developers in Nigeria.",
     ],
@@ -122,6 +127,7 @@ export const CASE_STUDIES: Record<string, CaseStudy> = {
 
   krownpay: {
     slug: "krownpay",
+    seoTitle: "KrownPay: Payments infrastructure on AWS",
     overview: [
       "Backend services, cloud infrastructure, and transaction workflows for a production payments platform.",
     ],
@@ -189,6 +195,7 @@ export const CASE_STUDIES: Record<string, CaseStudy> = {
 
   "resonance-holdings": {
     slug: "resonance-holdings",
+    seoTitle: "Resonance Holdings: Graph-backed market intelligence",
     overview: [
       "AI-driven market intelligence products — data exploration, relationship mapping, and contextual insights.",
     ],
@@ -241,6 +248,7 @@ export const CASE_STUDIES: Record<string, CaseStudy> = {
 
   rightward: {
     slug: "rightward",
+    seoTitle: "Rightward: AI-powered bill savings for Canadians",
     overview: [
       "Rightward is an AI-powered app that helps Canadians review recurring bills and find ways to save money.",
     ],
@@ -269,6 +277,7 @@ export const CASE_STUDIES: Record<string, CaseStudy> = {
 
   echofaith: {
     slug: "echofaith",
+    seoTitle: "EchoFaith: Multi-tenant church communication platform",
     overview: [
       "EchoFaith is an AI-native, multi-tenant platform for church communication and workflow automation.",
     ],

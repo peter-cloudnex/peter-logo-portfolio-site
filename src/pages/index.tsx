@@ -5,7 +5,7 @@ import { Section } from "@/components/layout/section";
 import { buttonClasses } from "@/components/button";
 import { Seo } from "@/components/seo";
 import { NewTabHint } from "@/components/text-link";
-import { SITE_TITLE, SITE_URLS } from "@/lib/site-config";
+import { SITE_JOB_TITLE, SITE_TITLE, SITE_URLS } from "@/lib/site-config";
 import { SelectedWork } from "@/components/home/selected-work";
 import { ExperienceTimeline } from "@/components/home/experience-timeline";
 import { TechnicalExpertise } from "@/components/home/technical-expertise";
@@ -22,9 +22,10 @@ export default function Home() {
   return (
     <>
       <Seo
-        title={`Peter Logo — ${SITE_TITLE}`}
-        description={`${SITE_TITLE} specializing in backend systems, AI-native applications, and cloud infrastructure.`}
+        title={`Peter Logo — ${SITE_JOB_TITLE}`}
+        description={`${SITE_JOB_TITLE} specializing in backend systems, AI-native applications, and cloud infrastructure.`}
         path="/"
+        includePerson
       />
       <Section>
         <Container>
@@ -61,7 +62,7 @@ export default function Home() {
                   href={SITE_URLS.github}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="font-medium text-foreground-muted no-underline transition-colors duration-150 ease-out hover:text-foreground focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand"
+                  className="inline-flex min-h-11 items-center font-medium text-foreground-muted no-underline transition-colors duration-150 ease-out hover:text-foreground focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand"
                 >
                   GitHub
                   <NewTabHint />
@@ -73,7 +74,7 @@ export default function Home() {
                   href={SITE_URLS.linkedin}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="font-medium text-foreground-muted no-underline transition-colors duration-150 ease-out hover:text-foreground focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand"
+                  className="inline-flex min-h-11 items-center font-medium text-foreground-muted no-underline transition-colors duration-150 ease-out hover:text-foreground focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand"
                 >
                   LinkedIn
                   <NewTabHint />
@@ -83,7 +84,7 @@ export default function Home() {
                 </span>
                 <a
                   href={`mailto:${SITE_URLS.email}`}
-                  className="font-medium text-foreground-muted no-underline transition-colors duration-150 ease-out hover:text-foreground focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand"
+                  className="inline-flex min-h-11 items-center font-medium text-foreground-muted no-underline transition-colors duration-150 ease-out hover:text-foreground focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand"
                 >
                   Email
                 </a>
@@ -97,7 +98,7 @@ export default function Home() {
                     src="/Peter-Logo-Photo.jpg"
                     alt="Portrait of Peter Logo"
                     fill
-                    sizes="(min-width: 1024px) 360px, 320px"
+                    sizes="(min-width: 1024px) 460px, 320px"
                     className="object-cover dark:brightness-[0.92] dark:contrast-[1.03]"
                     priority
                   />
@@ -118,7 +119,7 @@ export default function Home() {
 
       <Section spacing="compact" className="border-y border-border bg-surface">
         <Container>
-          <p className="font-mono text-meta uppercase tracking-[0.08em] text-foreground-subtle">Track record</p>
+          <h2 className="font-mono text-meta uppercase tracking-[0.08em] text-foreground-subtle">Track record</h2>
 
           <div className="mt-6 grid grid-cols-1 divide-y divide-border sm:grid-cols-3 sm:divide-x sm:divide-y-0">
             {PROOF_POINTS.map((point) => (

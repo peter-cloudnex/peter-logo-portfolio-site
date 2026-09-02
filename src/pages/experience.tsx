@@ -30,7 +30,7 @@ export default function ExperiencePage() {
             {EXPERIENCE.map((entry) => (
               <li key={entry.company} className="grid gap-2 py-6 sm:grid-cols-[minmax(0,220px)_1fr] sm:gap-8">
                 <div>
-                  <p className="font-semibold text-foreground">{entry.company}</p>
+                  <h2 className="font-semibold text-foreground">{entry.company}</h2>
                   <p className="text-meta text-foreground-muted">{entry.role}</p>
                   <p className="mt-1 font-mono text-mono uppercase tracking-[0.08em] text-foreground-subtle">
                     {entry.period}

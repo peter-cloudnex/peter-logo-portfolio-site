@@ -8,7 +8,7 @@ export default function WorkPage() {
     <>
       <Seo
         title="Work — Peter Logo"
-        description="AI infrastructure, payments, data platforms, and AI-native products — ModelRail, KrownPay, Resonance Holdings, Rightward, and EchoFaith."
+        description="Case studies in AI infrastructure, payments, data platforms, and AI-native products — ModelRail, KrownPay, Resonance Holdings, Rightward, and EchoFaith."
         path="/work"
       />
       <Section spacing="compact">

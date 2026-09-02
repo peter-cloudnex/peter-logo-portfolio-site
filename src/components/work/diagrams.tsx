@@ -85,6 +85,8 @@ export function ModelRailDiagram() {
       viewBox="0 0 760 620"
       role="img"
       aria-labelledby="modelrail-diagram-title"
+      aria-describedby="modelrail-diagram-caption"
+      focusable="false"
       className="w-full min-w-[640px]"
     >
       <title id="modelrail-diagram-title">ModelRail request flow, from calling app to provider and back</title>
@@ -145,7 +147,14 @@ export function ModelRailDiagram() {
 
 export function KrownPayDiagram() {
   return (
-    <svg viewBox="0 0 760 380" role="img" aria-labelledby="krownpay-diagram-title" className="w-full min-w-[560px]">
+    <svg
+      viewBox="0 0 760 380"
+      role="img"
+      aria-labelledby="krownpay-diagram-title"
+      aria-describedby="krownpay-diagram-caption"
+      focusable="false"
+      className="w-full min-w-[560px]"
+    >
       <title id="krownpay-diagram-title">{"KrownPay's move from a monolith to event-driven microservices"}</title>
       <defs>
         <ArrowheadMarker id="krownpay-arrow" />
@@ -201,7 +210,14 @@ export function ResonanceDiagram() {
   const byId = Object.fromEntries(nodes.map((n) => [n.id, n]));
 
   return (
-    <svg viewBox="0 0 700 340" role="img" aria-labelledby="resonance-diagram-title" className="w-full min-w-[520px]">
+    <svg
+      viewBox="0 0 700 340"
+      role="img"
+      aria-labelledby="resonance-diagram-title"
+      aria-describedby="resonance-holdings-diagram-caption"
+      focusable="false"
+      className="w-full min-w-[520px]"
+    >
       <title id="resonance-diagram-title">Conceptual illustration of a Neo4j graph model — entities connected by relationships</title>
       <text x={30} y={30} className="fill-foreground-subtle font-mono text-[11px] uppercase tracking-[0.08em]">
         Neo4j graph model (illustrative)

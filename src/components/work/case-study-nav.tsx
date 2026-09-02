@@ -58,7 +58,7 @@ export function CaseStudyNav({ sections }: { sections: NavSection[] }) {
   return (
     <nav aria-label="On this page" className="lg:sticky lg:top-24 lg:h-fit print:hidden">
       <details className="rounded-lg border border-border bg-surface p-4 lg:hidden">
-        <summary className="cursor-pointer font-mono text-meta uppercase tracking-[0.08em] text-foreground-subtle">
+        <summary className="flex min-h-11 cursor-pointer items-center font-mono text-meta uppercase tracking-[0.08em] text-foreground-subtle">
           On this page
         </summary>
         <ul className="mt-3 flex flex-col gap-2">

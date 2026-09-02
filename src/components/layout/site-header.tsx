@@ -26,7 +26,7 @@ function NavLink({ href, label, className = "", onClick }: { href: string; label
       href={href}
       aria-current={isActive ? "page" : undefined}
       onClick={onClick}
-      className={`no-underline font-medium text-body transition-colors duration-150 ease-out hover:text-foreground ${
+      className={`inline-flex min-h-11 items-center no-underline font-medium text-body transition-colors duration-150 ease-out hover:text-foreground ${
         isActive ? "text-foreground" : "text-foreground-muted"
       } ${className}`}
     >
@@ -112,7 +112,7 @@ export function SiteHeader() {
       <Container width="wide" className="flex h-16 items-center justify-between gap-4">
         <Link
           href="/"
-          className="no-underline text-body-lg font-semibold tracking-tight text-foreground transition-colors duration-150 ease-out"
+          className="inline-flex min-h-11 items-center no-underline text-body-lg font-semibold tracking-tight text-foreground transition-colors duration-150 ease-out"
         >
           Peter <span className="text-brand">Logo</span>
         </Link>
@@ -157,7 +157,7 @@ export function SiteHeader() {
               <ul className="flex flex-col">
                 {NAV_ITEMS.map((item) => (
                   <li key={item.href}>
-                    <NavLink {...item} className="block py-3 text-body-lg" onClick={() => setMenuOpen(false)} />
+                    <NavLink {...item} className="w-full py-3 text-body-lg" onClick={() => setMenuOpen(false)} />
                   </li>
                 ))}
               </ul>

@@ -10,12 +10,13 @@ const OPTIONS: { value: ThemePreference; label: string }[] = [
 export function ThemeToggle() {
   const { preference, setPreference } = useTheme();
   return (
-    <div className="inline-flex rounded-md border border-border p-0.5" role="group" aria-label="Theme">
+    <div className="inline-flex rounded-md border border-border p-0.5" role="radiogroup" aria-label="Theme">
       {OPTIONS.map((option) => (
         <button
           key={option.value}
           type="button"
-          aria-pressed={preference === option.value}
+          role="radio"
+          aria-checked={preference === option.value}
           onClick={() => setPreference(option.value)}
           className={`cursor-pointer rounded-sm px-3 min-h-11 text-meta font-medium transition-colors duration-150 ease-out ${
             preference === option.value ? "bg-brand-soft text-brand" : "text-foreground-muted hover:text-foreground"

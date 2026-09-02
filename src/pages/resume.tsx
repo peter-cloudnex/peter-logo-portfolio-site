@@ -3,7 +3,7 @@ import { Container } from "@/components/layout/container";
 import { Section } from "@/components/layout/section";
 import { buttonClasses } from "@/components/button";
 import { Seo } from "@/components/seo";
-import { SITE_EMAIL_HREF, SITE_URLS } from "@/lib/site-config";
+import { SITE_EMAIL_HREF, SITE_JOB_TITLE, SITE_URLS } from "@/lib/site-config";
 import { NewTabHint } from "@/components/text-link";
 import {
   RESUME_AI_ENGINEERING,
@@ -41,7 +41,7 @@ export default function ResumePage() {
   return (
     <>
       <Seo
-        title="Resume — Peter Logo"
+        title={`Resume — Peter Logo, ${SITE_JOB_TITLE}`}
         description="Full-stack engineer résumé: experience, projects, skills, and downloadable document."
         path="/resume"
       />
@@ -64,7 +64,7 @@ export default function ResumePage() {
           >
             <a
               href={SITE_EMAIL_HREF}
-              className="font-medium text-foreground-muted no-underline transition-colors duration-150 ease-out hover:text-foreground"
+              className="inline-flex min-h-11 items-center font-medium text-foreground-muted no-underline transition-colors duration-150 ease-out hover:text-foreground"
             >
               {SITE_URLS.email}
             </a>
@@ -75,7 +75,7 @@ export default function ResumePage() {
               href={SITE_URLS.github}
               target="_blank"
               rel="noopener noreferrer"
-              className="font-medium text-foreground-muted no-underline transition-colors duration-150 ease-out hover:text-foreground"
+              className="inline-flex min-h-11 items-center font-medium text-foreground-muted no-underline transition-colors duration-150 ease-out hover:text-foreground"
             >
               GitHub
               <NewTabHint />
@@ -87,7 +87,7 @@ export default function ResumePage() {
               href={SITE_URLS.linkedin}
               target="_blank"
               rel="noopener noreferrer"
-              className="font-medium text-foreground-muted no-underline transition-colors duration-150 ease-out hover:text-foreground"
+              className="inline-flex min-h-11 items-center font-medium text-foreground-muted no-underline transition-colors duration-150 ease-out hover:text-foreground"
             >
               LinkedIn
               <NewTabHint />
@@ -133,7 +133,7 @@ export default function ResumePage() {
                   <li key={`${entry.company}-${entry.period}`} className="print:break-inside-avoid">
                     <div className="flex flex-col gap-1 sm:flex-row sm:items-baseline sm:justify-between sm:gap-4">
                       <div>
-                        <p className="font-semibold text-foreground">{entry.role}</p>
+                        <h3 className="font-semibold text-foreground">{entry.role}</h3>
                         <p className="text-body text-foreground-muted">
                           {entry.company} · {entry.location}
                         </p>
@@ -156,7 +156,7 @@ export default function ResumePage() {
                   <li key={project.name} className="print:break-inside-avoid">
                     <div className="flex flex-col gap-1 sm:flex-row sm:items-baseline sm:justify-between sm:gap-4">
                       <div>
-                        <p className="font-semibold text-foreground">{project.name}</p>
+                        <h3 className="font-semibold text-foreground">{project.name}</h3>
                         <p className="text-body text-foreground-muted">{project.subtitle}</p>
                       </div>
                       {project.href ? (
@@ -183,7 +183,7 @@ export default function ResumePage() {
               <ul className="flex flex-col gap-4">
                 {RESUME_EDUCATION.map((item) => (
                   <li key={item.title}>
-                    <p className="font-semibold text-foreground">{item.title}</p>
+                    <h3 className="font-semibold text-foreground">{item.title}</h3>
                     <p className="text-body text-foreground-muted">
                       {item.org} · {item.detail}
                     </p>
@@ -196,7 +196,7 @@ export default function ResumePage() {
               <ul className="flex flex-col gap-4">
                 {RESUME_CERTIFICATIONS.map((item) => (
                   <li key={item.title}>
-                    <p className="font-semibold text-foreground">{item.title}</p>
+                    <h3 className="font-semibold text-foreground">{item.title}</h3>
                     <p className="text-body text-foreground-muted">
                       {item.org} · {item.detail}
                     </p>

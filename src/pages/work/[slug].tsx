@@ -129,8 +129,8 @@ export default function CaseStudyPage({ project, caseStudy, period, previous, ne
   return (
     <>
       <Seo
-        title={`${project.name} — Case study | Peter Logo`}
-        description={caseStudy.overview[0]}
+        title={`${caseStudy.seoTitle} — Peter Logo`}
+        description={caseStudy.seoDescription ?? caseStudy.overview[0]}
         path={`/work/${project.slug}`}
         ogType="article"
       />
@@ -190,7 +190,10 @@ export default function CaseStudyPage({ project, caseStudy, period, previous, ne
                     </p>
                   ))}
                   {Diagram ? (
-                    <ArchitectureDiagram caption={DIAGRAM_CAPTIONS[project.slug]}>
+                    <ArchitectureDiagram
+                      caption={DIAGRAM_CAPTIONS[project.slug]}
+                      captionId={`${project.slug}-diagram-caption`}
+                    >
                       <Diagram />
                     </ArchitectureDiagram>
                   ) : null}

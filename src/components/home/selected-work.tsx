@@ -64,7 +64,7 @@ function CaseStudyLink({ project, className = "" }: { project: Project; classNam
     <Link
       href={`/work/${project.slug}`}
       className={`absolute inset-0 z-0 rounded-lg no-underline ${className}`}
-      aria-label={`Read ${project.name} case study`}
+      aria-label={`Read case study: ${project.name}`}
     />
   );
 }
