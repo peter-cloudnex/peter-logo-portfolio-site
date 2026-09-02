@@ -4,7 +4,7 @@ import { Section } from "@/components/layout/section";
 import { buttonClasses } from "@/components/button";
 import { RecruiterActions } from "@/components/recruiter-actions";
 import { Seo } from "@/components/seo";
-import { trackEmailClick } from "@/lib/analytics";
+import { analytics } from "@/lib/analytics";
 import { SITE_EMAIL_HREF, SITE_URLS } from "@/lib/site-config";
 
 export default function ContactPage() {
@@ -27,11 +27,11 @@ export default function ContactPage() {
             <a
               href={SITE_EMAIL_HREF}
               className={buttonClasses("primary", "self-start")}
-              onClick={() => trackEmailClick({ location: "contact", page: "/contact" })}
+              onClick={() => analytics.trackEmailClick()}
             >
               Email {SITE_URLS.email}
             </a>
-            <RecruiterActions includeResumePage location="contact" className="mt-2" />
+            <RecruiterActions includeResumePage className="mt-2" />
           </div>
 
           <p className="mt-10 max-w-prose text-body text-foreground-muted">
