@@ -1,10 +1,13 @@
+import Link from "next/link";
 import { Container } from "@/components/layout/container";
 import { Section } from "@/components/layout/section";
 import { SectionHeading } from "@/components/section-heading";
 import { Tag } from "@/components/tag";
 import { PROJECTS, type Project } from "@/lib/portfolio";
 
-function ProjectMeta({ project }: { project: Project }) {
+// Exported so the case-study header (src/components/work/case-study-header.tsx) can reuse the
+// exact same category/link row instead of re-implementing it.
+export function ProjectMeta({ project }: { project: Project }) {
   return (
     <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
       <p
@@ -39,7 +42,11 @@ function FeaturedCard({ project }: { project: Project }) {
       <div className="grid gap-8 lg:grid-cols-[1.3fr_1fr] lg:gap-12">
         <div className="flex flex-col gap-4">
           <ProjectMeta project={project} />
-          <h3 className="text-h2 font-semibold tracking-tight text-foreground">{project.name}</h3>
+          <h3 className="text-h2 font-semibold tracking-tight text-foreground">
+            <Link href={`/work/${project.slug}`} className="no-underline hover:text-brand hover:underline">
+              {project.name}
+            </Link>
+          </h3>
           <p className="max-w-prose text-body-lg text-foreground-muted">{project.context}</p>
           <p className="max-w-prose text-body text-foreground">{project.responsibility}</p>
         </div>
@@ -68,7 +75,11 @@ function StandardCard({ project }: { project: Project }) {
   return (
     <div className="flex flex-col gap-4 rounded-lg border border-border bg-surface p-6 transition-colors hover:border-border-strong">
       <ProjectMeta project={project} />
-      <h3 className="text-h3 font-semibold tracking-tight text-foreground">{project.name}</h3>
+      <h3 className="text-h3 font-semibold tracking-tight text-foreground">
+        <Link href={`/work/${project.slug}`} className="no-underline hover:text-brand hover:underline">
+          {project.name}
+        </Link>
+      </h3>
       <p className="text-body text-foreground-muted">{project.context}</p>
       <p className="text-body text-foreground">{project.responsibility}</p>
       <ul className="flex flex-col gap-2">
